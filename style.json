@@ -9,7 +9,7 @@
       ],
       "minzoom": 8,
       "maxzoom": 18,
-      "attribution": "Kartendaten © MapTiler und © OpenStreetMap contributors"
+      "attribution": "Danke an: "
     }
   },
   "glyphs": "https://api.maptiler.com/fonts/{fontstack}/{range}.pbf?key=oltvWv3Xrm4wuk400gjr",
