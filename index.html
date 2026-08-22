@@ -31,24 +31,35 @@ body { font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-se
   position:absolute; z-index:5;
   top:calc(64px + env(safe-area-inset-top));
   left:calc(12px + env(safe-area-inset-left));
-  width:280px; max-height:calc(100% - 88px);
+  width:300px; max-height:calc(100% - 88px);
   overflow:auto; -webkit-overflow-scrolling:touch;
-  background:rgba(255,255,255,.96); border-radius:12px;
+  background:rgba(255,255,255,.97); border-radius:12px;
   box-shadow:0 4px 18px rgba(0,0,0,.18); padding:14px;
   transition:transform .2s ease, opacity .2s ease;
 }
 #panel.hidden { transform:translateY(-8px); opacity:0; pointer-events:none; }
 
 #panel h2 { margin:0 0 8px; font-size:18px; }
-#panel p { margin:0 0 10px; font-size:13px; color:#555; }
 
-.district {
-  display:flex; align-items:center; gap:10px;
-  padding:9px 4px; font-size:14px;
-  min-height:44px; border-radius:8px;
+.section { margin-top:4px; }
+.section-header {
+  display:flex; align-items:center; justify-content:space-between;
+  padding:8px 4px; cursor:pointer; user-select:none;
+  font-weight:600; font-size:14px; border-top:1px solid #eee;
 }
-.district:active { background:rgba(0,0,0,.05); }
-.district input { margin:0; width:20px; height:20px; flex:none; }
+.section-header .chevron { transition:transform .15s ease; font-size:12px; color:#888; }
+.section-header.collapsed .chevron { transform:rotate(-90deg); }
+.section-body { display:block; }
+.section-body.collapsed { display:none; }
+
+.district, .toplevel {
+  display:flex; align-items:center; gap:10px;
+  padding:8px 4px; font-size:14px;
+  min-height:40px; border-radius:8px;
+}
+.toplevel { font-weight:600; }
+.district:active, .toplevel:active { background:rgba(0,0,0,.05); }
+.district input, .toplevel input { margin:0; width:19px; height:19px; flex:none; }
 
 #loading {
   position:absolute; z-index:10; left:50%; top:50%;
@@ -79,7 +90,7 @@ body { font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-se
 @media (max-width:680px) {
   #panel {
     top:auto; left:0; right:0; bottom:0;
-    width:100%; max-height:50vh;
+    width:100%; max-height:55vh;
     border-radius:16px 16px 0 0;
     padding:12px 16px calc(14px + env(safe-area-inset-bottom));
     transform:translateY(0);
@@ -93,21 +104,53 @@ body { font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-se
 <body>
 <div id="map"></div>
 <div id="loading">Karte wird geladen …</div>
-<button id="panelToggle" type="button" aria-label="Wahlbezirke ein-/ausblenden" aria-expanded="false">☰</button>
+<button id="panelToggle" type="button" aria-label="Layer ein-/ausblenden" aria-expanded="false">☰</button>
 <div id="panel" class="hidden">
-  <h2>Wahlbezirke Achim</h2>
-  <p>Wahlbezirke ein- oder ausblenden.</p>
-  <label class="district"><input id="all" type="checkbox" checked> Alle</label>
-  <hr>
-  <div id="districts"></div>
+  <h2>Achim – Wahlkarte</h2>
+
+  <div class="section">
+    <div class="section-header" data-target="sec-bezirke">
+      <label class="toplevel" style="padding:0;">
+        <input id="all-bezirke" type="checkbox" checked> Wahlbezirke
+      </label>
+      <span class="chevron">▾</span>
+    </div>
+    <div class="section-body" id="sec-bezirke"></div>
+  </div>
+
+  <div class="section">
+    <div class="section-header" data-target="sec-lokale">
+      <label class="toplevel" style="padding:0;">
+        <input id="all-lokale" type="checkbox" checked> Wahllokale
+      </label>
+      <span class="chevron">▾</span>
+    </div>
+    <div class="section-body" id="sec-lokale"></div>
+  </div>
+
+  <div class="section">
+    <div class="section-header" data-target="sec-grenzen">
+      <label class="toplevel" style="padding:0;">
+        <input id="all-grenzen" type="checkbox" checked> Grenzen
+      </label>
+      <span class="chevron">▾</span>
+    </div>
+    <div class="section-body" id="sec-grenzen">
+      <label class="district"><input type="checkbox" checked data-layers="stadtgrenze-glow,stadtgrenze-line"> Stadtgrenze</label>
+      <label class="district"><input type="checkbox" checked data-layers="gemarkungen-line"> Gemarkungen</label>
+      <label class="district"><input type="checkbox" checked data-layers="grenze-ost-west-line"> Grenze Ost-West</label>
+    </div>
+  </div>
 </div>
 
 <script src="https://unpkg.com/maplibre-gl@5.13.0/dist/maplibre-gl.js"></script>
 <script>
 const MAPTILER_KEY = 'oltvWv3Xrm4wuk400gjr';
-const MAPTILER_STYLE = 'streets-v2'; // Alternativen: 'streets-v2', 'basic-v2', 'dataviz', 'outdoor-v2'
+const MAPTILER_STYLE = 'streets-v2';
 
 const districts = ["Wahlbezirk 001", "Wahlbezirk 002", "Wahlbezirk 003", "Wahlbezirk 004", "Wahlbezirk 005", "Wahlbezirk 006", "Wahlbezirk 007", "Wahlbezirk 008", "Wahlbezirk 009", "Wahlbezirk 010", "Wahlbezirk 011", "Wahlbezirk 012", "Wahlbezirk 013", "Wahlbezirk 014", "Wahlbezirk 015", "Wahlbezirk 016", "Wahlbezirk 017", "Wahlbezirk 018", "Wahlbezirk 019", "Wahlbezirk 020", "Wahlbezirk 021", "Wahlbezirk 022", "Wahlbezirk 023", "Wahlbezirk 024", "Wahlbezirk 025", "Wahlbezirk 026", "Wahlbezirk 027", "Wahlbezirk 028", "Wahlbezirk 029", "Wahlbezirk 030", "Wahlbezirk 031", "Wahlbezirk 032", "Wahlbezirk 033", "Wahlbezirk 034"];
+const wahllokale = ["Hamdans Restaurant", "Grundschule Uphusen", "Grundschule Bierden", "Grundschule am Paulsberg", "GamMa", "ALS", "IGS Achim", "Grundschule Uesen", "Schützenhaus Achim", "Schützenverein Embsen", "Grundschule Baden", "Wachtelkönig"];
+
 const bounds = "8.91611,52.9803,9.14296,53.0566";
 const b = bounds.split(',').map(Number);
 const initialBounds = (b.length === 4 && b.every(Number.isFinite))
@@ -125,17 +168,25 @@ const map = new maplibregl.Map({
 map.addControl(new maplibregl.NavigationControl({showCompass:false}), 'top-right');
 map.addControl(new maplibregl.ScaleControl({maxWidth:120, unit:'metric'}), 'bottom-right');
 
-// Panel-Toggle (Bezirksliste ein-/ausblenden)
+// Panel-Toggle
 const panel = document.getElementById('panel');
 const panelToggle = document.getElementById('panelToggle');
 function setPanelOpen(open) {
   panel.classList.toggle('hidden', !open);
   panelToggle.setAttribute('aria-expanded', String(open));
 }
-panelToggle.addEventListener('click', () => {
-  setPanelOpen(panel.classList.contains('hidden'));
-});
+panelToggle.addEventListener('click', () => setPanelOpen(panel.classList.contains('hidden')));
 setPanelOpen(window.innerWidth > 680);
+
+// Abschnitte ein-/ausklappbar (spart Platz auf kleinen Screens)
+document.querySelectorAll('.section-header').forEach(header => {
+  header.addEventListener('click', (e) => {
+    if (e.target.tagName === 'INPUT') return;
+    const body = document.getElementById(header.dataset.target);
+    header.classList.toggle('collapsed');
+    body.classList.toggle('collapsed');
+  });
+});
 
 function fillPopup(feature) {
   const props = feature.properties || {};
@@ -148,61 +199,90 @@ function fillPopup(feature) {
          (rows ? `<table class="attr">${rows}</table>` : '<p>Keine Attribute vorhanden.</p>');
 }
 
-function setupDistricts() {
-  const container = document.getElementById('districts');
+function setLayers(ids, visible) {
+  ids.forEach(id => {
+    if (map.getLayer(id)) map.setLayoutProperty(id, 'visibility', visible ? 'visible' : 'none');
+  });
+}
+
+function setupPanel() {
+  // Wahlbezirke
+  const bezirkeContainer = document.getElementById('sec-bezirke');
   districts.forEach((name, i) => {
     const idx = String(i+1).padStart(3,'0');
+    const layerIds = [`fill-${idx}`, `line-${idx}`, ...[1,2,3,4].map(g => `glow-${idx}-${g}`)];
     const row = document.createElement('label');
     row.className = 'district';
-    row.innerHTML = `<input type="checkbox" checked data-index="${i}"> ${name}`;
-    row.querySelector('input').addEventListener('change', e => {
-      const visible = e.target.checked ? 'visible' : 'none';
-      map.setLayoutProperty(`fill-${idx}`, 'visibility', visible);
-      map.setLayoutProperty(`line-${idx}`, 'visibility', visible);
-      for (let g = 1; g <= 4; g++) {
-        map.setLayoutProperty(`glow-${idx}-${g}`, 'visibility', visible);
-      }
-    });
-    container.appendChild(row);
+    row.innerHTML = `<input type="checkbox" checked> ${name}`;
+    row.querySelector('input').addEventListener('change', e => setLayers(layerIds, e.target.checked));
+    bezirkeContainer.appendChild(row);
   });
-
-  document.getElementById('all').addEventListener('change', e => {
-    const visible = e.target.checked ? 'visible' : 'none';
-    document.querySelectorAll('#districts input').forEach(x => x.checked = e.target.checked);
+  document.getElementById('all-bezirke').addEventListener('change', e => {
+    document.querySelectorAll('#sec-bezirke input').forEach(x => x.checked = e.target.checked);
     districts.forEach((_, i) => {
       const idx = String(i+1).padStart(3,'0');
-      map.setLayoutProperty(`fill-${idx}`, 'visibility', visible);
-      map.setLayoutProperty(`line-${idx}`, 'visibility', visible);
-      for (let g = 1; g <= 4; g++) {
-        map.setLayoutProperty(`glow-${idx}-${g}`, 'visibility', visible);
-      }
+      setLayers([`fill-${idx}`, `line-${idx}`, ...[1,2,3,4].map(g => `glow-${idx}-${g}`)], e.target.checked);
     });
   });
 
-  // Klick/Tap auf ein gerendertes Vektor-Feature.
+  // Wahllokale
+  const lokaleContainer = document.getElementById('sec-lokale');
+  wahllokale.forEach((name, i) => {
+    const wid = String(i+1).padStart(3,'0');
+    const layerIds = [`wahllokal-${wid}`];
+    const row = document.createElement('label');
+    row.className = 'district';
+    row.innerHTML = `<input type="checkbox" checked> ${name}`;
+    row.querySelector('input').addEventListener('change', e => setLayers(layerIds, e.target.checked));
+    lokaleContainer.appendChild(row);
+  });
+  document.getElementById('all-lokale').addEventListener('change', e => {
+    document.querySelectorAll('#sec-lokale input').forEach(x => x.checked = e.target.checked);
+    wahllokale.forEach((_, i) => {
+      const wid = String(i+1).padStart(3,'0');
+      setLayers([`wahllokal-${wid}`], e.target.checked);
+    });
+  });
+
+  // Grenzen (Stadtgrenze, Gemarkungen, Grenze Ost-West)
+  document.querySelectorAll('#sec-grenzen input[data-layers]').forEach(input => {
+    input.addEventListener('change', e => {
+      setLayers(e.target.dataset.layers.split(','), e.target.checked);
+    });
+  });
+  document.getElementById('all-grenzen').addEventListener('change', e => {
+    document.querySelectorAll('#sec-grenzen input[data-layers]').forEach(x => {
+      x.checked = e.target.checked;
+      setLayers(x.dataset.layers.split(','), e.target.checked);
+    });
+  });
+
+  // Klick/Tap auf ein gerendertes Vektor-Feature
   map.on('click', (e) => {
     const features = map.queryRenderedFeatures(e.point);
     if (!features.length) return;
-    const feature = features[0];
-    new maplibregl.Popup({maxWidth:'none'}).setLngLat(e.lngLat).setHTML(fillPopup(feature)).addTo(map);
+    new maplibregl.Popup({maxWidth:'none'}).setLngLat(e.lngLat).setHTML(fillPopup(features[0])).addTo(map);
   });
-
   map.on('mousemove', e => {
     const features = map.queryRenderedFeatures(e.point);
     map.getCanvas().style.cursor = features.length ? 'pointer' : '';
   });
 }
 
-// Erst wenn die MapTiler-Basiskarte fertig geladen ist, eigene Wahlbezirke-Layer
-// aus style.json dazuladen und obendrauf legen.
 map.on('load', () => {
+  // MapTiler-Verwaltungsgrenzen ausblenden (kollidieren sonst mit eigener Stadtgrenze)
+  map.getStyle().layers
+    .map(l => l.id)
+    .filter(id => /boundary|admin/i.test(id))
+    .forEach(id => map.setLayoutProperty(id, 'visibility', 'none'));
+
   fetch('style.json')
     .then(r => r.json())
     .then(own => {
       map.addSource('wahlbezirke', own.sources.wahlbezirke);
       own.layers.forEach(layer => map.addLayer(layer));
       document.getElementById('loading').remove();
-      setupDistricts();
+      setupPanel();
     })
     .catch(err => {
       console.error('Konnte eigene style.json nicht laden:', err);

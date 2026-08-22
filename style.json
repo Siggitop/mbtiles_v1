@@ -15,51 +15,6 @@
   "glyphs": "https://api.maptiler.com/fonts/{fontstack}/{range}.pbf?key=oltvWv3Xrm4wuk400gjr",
   "layers": [
     {
-      "id": "glow-001-0",
-      "type": "line",
-      "source": "wahlbezirke",
-      "source-layer": "Stadtgrenze",
-      "minzoom": 8,
-      "paint": {
-        "line-color": "#e76f51",
-        "line-opacity": 1,
-        "line-blur": [
-          "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "zoom"
-          ],
-          8,
-          3,
-          18,
-          8
-        ],
-        "line-width": [
-          "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "zoom"
-          ],
-          8,
-          6,
-          12,
-          14,
-          16,
-          26,
-          18,
-          34
-        ]
-      },
-      "layout": {
-        "line-cap": "round",
-        "line-join": "round"
-      }
-    },
-    {
       "id": "glow-001-1",
       "type": "line",
       "source": "wahlbezirke",
@@ -258,7 +213,7 @@
       "minzoom": 8,
       "paint": {
         "line-color": "#e76f51",
-        "line-opacity": 0.55,
+        "line-opacity": 0.9,
         "line-width": [
           "interpolate",
           [
@@ -268,13 +223,11 @@
             "zoom"
           ],
           8,
-          0.5,
-          12,
-          1.0,
-          16,
-          1.5,
+          1,
+          14,
+          2,
           18,
-          2.0
+          3
         ]
       }
     },
@@ -477,7 +430,7 @@
       "minzoom": 8,
       "paint": {
         "line-color": "#2a9d8f",
-        "line-opacity": 0.55,
+        "line-opacity": 0.9,
         "line-width": [
           "interpolate",
           [
@@ -487,13 +440,11 @@
             "zoom"
           ],
           8,
-          0.5,
-          12,
-          1.0,
-          16,
-          1.5,
+          1,
+          14,
+          2,
           18,
-          2.0
+          3
         ]
       }
     },
@@ -696,7 +647,7 @@
       "minzoom": 8,
       "paint": {
         "line-color": "#e9c46a",
-        "line-opacity": 0.55,
+        "line-opacity": 0.9,
         "line-width": [
           "interpolate",
           [
@@ -706,13 +657,11 @@
             "zoom"
           ],
           8,
-          0.5,
-          12,
-          1.0,
-          16,
-          1.5,
+          1,
+          14,
+          2,
           18,
-          2.0
+          3
         ]
       }
     },
@@ -723,7 +672,7 @@
       "source-layer": "Wahlbezirk 004",
       "minzoom": 8,
       "paint": {
-        "line-color": "#457b9d",
+        "line-color": "#264653",
         "line-opacity": 0.05,
         "line-blur": [
           "interpolate",
@@ -768,7 +717,7 @@
       "source-layer": "Wahlbezirk 004",
       "minzoom": 8,
       "paint": {
-        "line-color": "#457b9d",
+        "line-color": "#264653",
         "line-opacity": 0.09,
         "line-blur": [
           "interpolate",
@@ -813,7 +762,7 @@
       "source-layer": "Wahlbezirk 004",
       "minzoom": 8,
       "paint": {
-        "line-color": "#457b9d",
+        "line-color": "#264653",
         "line-opacity": 0.14,
         "line-blur": [
           "interpolate",
@@ -858,7 +807,7 @@
       "source-layer": "Wahlbezirk 004",
       "minzoom": 8,
       "paint": {
-        "line-color": "#457b9d",
+        "line-color": "#264653",
         "line-opacity": 0.22,
         "line-blur": [
           "interpolate",
@@ -903,7 +852,7 @@
       "source-layer": "Wahlbezirk 004",
       "minzoom": 8,
       "paint": {
-        "fill-color": "#457b9d",
+        "fill-color": "#264653",
         "fill-opacity": 0.22
       }
     },
@@ -914,8 +863,8 @@
       "source-layer": "Wahlbezirk 004",
       "minzoom": 8,
       "paint": {
-        "line-color": "#457b9d",
-        "line-opacity": 0.55,
+        "line-color": "#264653",
+        "line-opacity": 0.9,
         "line-width": [
           "interpolate",
           [
@@ -925,13 +874,11 @@
             "zoom"
           ],
           8,
-          0.5,
-          12,
-          1.0,
-          16,
-          1.5,
+          1,
+          14,
+          2,
           18,
-          2.0
+          3
         ]
       }
     },
@@ -1134,7 +1081,7 @@
       "minzoom": 8,
       "paint": {
         "line-color": "#f4a261",
-        "line-opacity": 0.55,
+        "line-opacity": 0.9,
         "line-width": [
           "interpolate",
           [
@@ -1144,13 +1091,11 @@
             "zoom"
           ],
           8,
-          0.5,
-          12,
-          1.0,
-          16,
-          1.5,
+          1,
+          14,
+          2,
           18,
-          2.0
+          3
         ]
       }
     },
@@ -1161,7 +1106,7 @@
       "source-layer": "Wahlbezirk 006",
       "minzoom": 8,
       "paint": {
-        "line-color": "#6a4c93",
+        "line-color": "#8ab17d",
         "line-opacity": 0.05,
         "line-blur": [
           "interpolate",
@@ -1206,7 +1151,7 @@
       "source-layer": "Wahlbezirk 006",
       "minzoom": 8,
       "paint": {
-        "line-color": "#6a4c93",
+        "line-color": "#8ab17d",
         "line-opacity": 0.09,
         "line-blur": [
           "interpolate",
@@ -1251,7 +1196,7 @@
       "source-layer": "Wahlbezirk 006",
       "minzoom": 8,
       "paint": {
-        "line-color": "#6a4c93",
+        "line-color": "#8ab17d",
         "line-opacity": 0.14,
         "line-blur": [
           "interpolate",
@@ -1296,7 +1241,7 @@
       "source-layer": "Wahlbezirk 006",
       "minzoom": 8,
       "paint": {
-        "line-color": "#6a4c93",
+        "line-color": "#8ab17d",
         "line-opacity": 0.22,
         "line-blur": [
           "interpolate",
@@ -1341,7 +1286,7 @@
       "source-layer": "Wahlbezirk 006",
       "minzoom": 8,
       "paint": {
-        "fill-color": "#6a4c93",
+        "fill-color": "#8ab17d",
         "fill-opacity": 0.22
       }
     },
@@ -1352,8 +1297,8 @@
       "source-layer": "Wahlbezirk 006",
       "minzoom": 8,
       "paint": {
-        "line-color": "#6a4c93",
-        "line-opacity": 0.55,
+        "line-color": "#8ab17d",
+        "line-opacity": 0.9,
         "line-width": [
           "interpolate",
           [
@@ -1363,13 +1308,11 @@
             "zoom"
           ],
           8,
-          0.5,
-          12,
-          1.0,
-          16,
-          1.5,
+          1,
+          14,
+          2,
           18,
-          2.0
+          3
         ]
       }
     },
@@ -1380,7 +1323,7 @@
       "source-layer": "Wahlbezirk 007",
       "minzoom": 8,
       "paint": {
-        "line-color": "#43aa8b",
+        "line-color": "#c9184a",
         "line-opacity": 0.05,
         "line-blur": [
           "interpolate",
@@ -1425,7 +1368,7 @@
       "source-layer": "Wahlbezirk 007",
       "minzoom": 8,
       "paint": {
-        "line-color": "#43aa8b",
+        "line-color": "#c9184a",
         "line-opacity": 0.09,
         "line-blur": [
           "interpolate",
@@ -1470,7 +1413,7 @@
       "source-layer": "Wahlbezirk 007",
       "minzoom": 8,
       "paint": {
-        "line-color": "#43aa8b",
+        "line-color": "#c9184a",
         "line-opacity": 0.14,
         "line-blur": [
           "interpolate",
@@ -1515,7 +1458,7 @@
       "source-layer": "Wahlbezirk 007",
       "minzoom": 8,
       "paint": {
-        "line-color": "#43aa8b",
+        "line-color": "#c9184a",
         "line-opacity": 0.22,
         "line-blur": [
           "interpolate",
@@ -1560,7 +1503,7 @@
       "source-layer": "Wahlbezirk 007",
       "minzoom": 8,
       "paint": {
-        "fill-color": "#43aa8b",
+        "fill-color": "#c9184a",
         "fill-opacity": 0.22
       }
     },
@@ -1571,8 +1514,8 @@
       "source-layer": "Wahlbezirk 007",
       "minzoom": 8,
       "paint": {
-        "line-color": "#43aa8b",
-        "line-opacity": 0.55,
+        "line-color": "#c9184a",
+        "line-opacity": 0.9,
         "line-width": [
           "interpolate",
           [
@@ -1582,13 +1525,11 @@
             "zoom"
           ],
           8,
-          0.5,
-          12,
-          1.0,
-          16,
-          1.5,
+          1,
+          14,
+          2,
           18,
-          2.0
+          3
         ]
       }
     },
@@ -1599,7 +1540,7 @@
       "source-layer": "Wahlbezirk 008",
       "minzoom": 8,
       "paint": {
-        "line-color": "#f94144",
+        "line-color": "#3a86ff",
         "line-opacity": 0.05,
         "line-blur": [
           "interpolate",
@@ -1644,7 +1585,7 @@
       "source-layer": "Wahlbezirk 008",
       "minzoom": 8,
       "paint": {
-        "line-color": "#f94144",
+        "line-color": "#3a86ff",
         "line-opacity": 0.09,
         "line-blur": [
           "interpolate",
@@ -1689,7 +1630,7 @@
       "source-layer": "Wahlbezirk 008",
       "minzoom": 8,
       "paint": {
-        "line-color": "#f94144",
+        "line-color": "#3a86ff",
         "line-opacity": 0.14,
         "line-blur": [
           "interpolate",
@@ -1734,7 +1675,7 @@
       "source-layer": "Wahlbezirk 008",
       "minzoom": 8,
       "paint": {
-        "line-color": "#f94144",
+        "line-color": "#3a86ff",
         "line-opacity": 0.22,
         "line-blur": [
           "interpolate",
@@ -1779,7 +1720,7 @@
       "source-layer": "Wahlbezirk 008",
       "minzoom": 8,
       "paint": {
-        "fill-color": "#f94144",
+        "fill-color": "#3a86ff",
         "fill-opacity": 0.22
       }
     },
@@ -1790,8 +1731,8 @@
       "source-layer": "Wahlbezirk 008",
       "minzoom": 8,
       "paint": {
-        "line-color": "#f94144",
-        "line-opacity": 0.55,
+        "line-color": "#3a86ff",
+        "line-opacity": 0.9,
         "line-width": [
           "interpolate",
           [
@@ -1801,13 +1742,11 @@
             "zoom"
           ],
           8,
-          0.5,
-          12,
-          1.0,
-          16,
-          1.5,
+          1,
+          14,
+          2,
           18,
-          2.0
+          3
         ]
       }
     },
@@ -1818,7 +1757,7 @@
       "source-layer": "Wahlbezirk 009",
       "minzoom": 8,
       "paint": {
-        "line-color": "#577590",
+        "line-color": "#ff9f1c",
         "line-opacity": 0.05,
         "line-blur": [
           "interpolate",
@@ -1863,7 +1802,7 @@
       "source-layer": "Wahlbezirk 009",
       "minzoom": 8,
       "paint": {
-        "line-color": "#577590",
+        "line-color": "#ff9f1c",
         "line-opacity": 0.09,
         "line-blur": [
           "interpolate",
@@ -1908,7 +1847,7 @@
       "source-layer": "Wahlbezirk 009",
       "minzoom": 8,
       "paint": {
-        "line-color": "#577590",
+        "line-color": "#ff9f1c",
         "line-opacity": 0.14,
         "line-blur": [
           "interpolate",
@@ -1953,7 +1892,7 @@
       "source-layer": "Wahlbezirk 009",
       "minzoom": 8,
       "paint": {
-        "line-color": "#577590",
+        "line-color": "#ff9f1c",
         "line-opacity": 0.22,
         "line-blur": [
           "interpolate",
@@ -1998,7 +1937,7 @@
       "source-layer": "Wahlbezirk 009",
       "minzoom": 8,
       "paint": {
-        "fill-color": "#577590",
+        "fill-color": "#ff9f1c",
         "fill-opacity": 0.22
       }
     },
@@ -2009,8 +1948,8 @@
       "source-layer": "Wahlbezirk 009",
       "minzoom": 8,
       "paint": {
-        "line-color": "#577590",
-        "line-opacity": 0.55,
+        "line-color": "#ff9f1c",
+        "line-opacity": 0.9,
         "line-width": [
           "interpolate",
           [
@@ -2020,13 +1959,11 @@
             "zoom"
           ],
           8,
-          0.5,
-          12,
-          1.0,
-          16,
-          1.5,
+          1,
+          14,
+          2,
           18,
-          2.0
+          3
         ]
       }
     },
@@ -2037,7 +1974,7 @@
       "source-layer": "Wahlbezirk 010",
       "minzoom": 8,
       "paint": {
-        "line-color": "#f8961e",
+        "line-color": "#6a4c93",
         "line-opacity": 0.05,
         "line-blur": [
           "interpolate",
@@ -2082,7 +2019,7 @@
       "source-layer": "Wahlbezirk 010",
       "minzoom": 8,
       "paint": {
-        "line-color": "#f8961e",
+        "line-color": "#6a4c93",
         "line-opacity": 0.09,
         "line-blur": [
           "interpolate",
@@ -2127,7 +2064,7 @@
       "source-layer": "Wahlbezirk 010",
       "minzoom": 8,
       "paint": {
-        "line-color": "#f8961e",
+        "line-color": "#6a4c93",
         "line-opacity": 0.14,
         "line-blur": [
           "interpolate",
@@ -2172,7 +2109,7 @@
       "source-layer": "Wahlbezirk 010",
       "minzoom": 8,
       "paint": {
-        "line-color": "#f8961e",
+        "line-color": "#6a4c93",
         "line-opacity": 0.22,
         "line-blur": [
           "interpolate",
@@ -2217,7 +2154,7 @@
       "source-layer": "Wahlbezirk 010",
       "minzoom": 8,
       "paint": {
-        "fill-color": "#f8961e",
+        "fill-color": "#6a4c93",
         "fill-opacity": 0.22
       }
     },
@@ -2228,8 +2165,8 @@
       "source-layer": "Wahlbezirk 010",
       "minzoom": 8,
       "paint": {
-        "line-color": "#f8961e",
-        "line-opacity": 0.55,
+        "line-color": "#6a4c93",
+        "line-opacity": 0.9,
         "line-width": [
           "interpolate",
           [
@@ -2239,13 +2176,11 @@
             "zoom"
           ],
           8,
-          0.5,
-          12,
-          1.0,
-          16,
-          1.5,
+          1,
+          14,
+          2,
           18,
-          2.0
+          3
         ]
       }
     },
@@ -2256,7 +2191,7 @@
       "source-layer": "Wahlbezirk 011",
       "minzoom": 8,
       "paint": {
-        "line-color": "#277da1",
+        "line-color": "#118ab2",
         "line-opacity": 0.05,
         "line-blur": [
           "interpolate",
@@ -2301,7 +2236,7 @@
       "source-layer": "Wahlbezirk 011",
       "minzoom": 8,
       "paint": {
-        "line-color": "#277da1",
+        "line-color": "#118ab2",
         "line-opacity": 0.09,
         "line-blur": [
           "interpolate",
@@ -2346,7 +2281,7 @@
       "source-layer": "Wahlbezirk 011",
       "minzoom": 8,
       "paint": {
-        "line-color": "#277da1",
+        "line-color": "#118ab2",
         "line-opacity": 0.14,
         "line-blur": [
           "interpolate",
@@ -2391,7 +2326,7 @@
       "source-layer": "Wahlbezirk 011",
       "minzoom": 8,
       "paint": {
-        "line-color": "#277da1",
+        "line-color": "#118ab2",
         "line-opacity": 0.22,
         "line-blur": [
           "interpolate",
@@ -2436,7 +2371,7 @@
       "source-layer": "Wahlbezirk 011",
       "minzoom": 8,
       "paint": {
-        "fill-color": "#277da1",
+        "fill-color": "#118ab2",
         "fill-opacity": 0.22
       }
     },
@@ -2447,8 +2382,8 @@
       "source-layer": "Wahlbezirk 011",
       "minzoom": 8,
       "paint": {
-        "line-color": "#277da1",
-        "line-opacity": 0.55,
+        "line-color": "#118ab2",
+        "line-opacity": 0.9,
         "line-width": [
           "interpolate",
           [
@@ -2458,13 +2393,11 @@
             "zoom"
           ],
           8,
-          0.5,
-          12,
-          1.0,
-          16,
-          1.5,
+          1,
+          14,
+          2,
           18,
-          2.0
+          3
         ]
       }
     },
@@ -2475,7 +2408,7 @@
       "source-layer": "Wahlbezirk 012",
       "minzoom": 8,
       "paint": {
-        "line-color": "#90be6d",
+        "line-color": "#ef476f",
         "line-opacity": 0.05,
         "line-blur": [
           "interpolate",
@@ -2520,7 +2453,7 @@
       "source-layer": "Wahlbezirk 012",
       "minzoom": 8,
       "paint": {
-        "line-color": "#90be6d",
+        "line-color": "#ef476f",
         "line-opacity": 0.09,
         "line-blur": [
           "interpolate",
@@ -2565,7 +2498,7 @@
       "source-layer": "Wahlbezirk 012",
       "minzoom": 8,
       "paint": {
-        "line-color": "#90be6d",
+        "line-color": "#ef476f",
         "line-opacity": 0.14,
         "line-blur": [
           "interpolate",
@@ -2610,7 +2543,7 @@
       "source-layer": "Wahlbezirk 012",
       "minzoom": 8,
       "paint": {
-        "line-color": "#90be6d",
+        "line-color": "#ef476f",
         "line-opacity": 0.22,
         "line-blur": [
           "interpolate",
@@ -2655,7 +2588,7 @@
       "source-layer": "Wahlbezirk 012",
       "minzoom": 8,
       "paint": {
-        "fill-color": "#90be6d",
+        "fill-color": "#ef476f",
         "fill-opacity": 0.22
       }
     },
@@ -2666,8 +2599,8 @@
       "source-layer": "Wahlbezirk 012",
       "minzoom": 8,
       "paint": {
-        "line-color": "#90be6d",
-        "line-opacity": 0.55,
+        "line-color": "#ef476f",
+        "line-opacity": 0.9,
         "line-width": [
           "interpolate",
           [
@@ -2677,13 +2610,11 @@
             "zoom"
           ],
           8,
-          0.5,
-          12,
-          1.0,
-          16,
-          1.5,
+          1,
+          14,
+          2,
           18,
-          2.0
+          3
         ]
       }
     },
@@ -2694,7 +2625,7 @@
       "source-layer": "Wahlbezirk 013",
       "minzoom": 8,
       "paint": {
-        "line-color": "#e76f51",
+        "line-color": "#06d6a0",
         "line-opacity": 0.05,
         "line-blur": [
           "interpolate",
@@ -2739,7 +2670,7 @@
       "source-layer": "Wahlbezirk 013",
       "minzoom": 8,
       "paint": {
-        "line-color": "#e76f51",
+        "line-color": "#06d6a0",
         "line-opacity": 0.09,
         "line-blur": [
           "interpolate",
@@ -2784,7 +2715,7 @@
       "source-layer": "Wahlbezirk 013",
       "minzoom": 8,
       "paint": {
-        "line-color": "#e76f51",
+        "line-color": "#06d6a0",
         "line-opacity": 0.14,
         "line-blur": [
           "interpolate",
@@ -2829,7 +2760,7 @@
       "source-layer": "Wahlbezirk 013",
       "minzoom": 8,
       "paint": {
-        "line-color": "#e76f51",
+        "line-color": "#06d6a0",
         "line-opacity": 0.22,
         "line-blur": [
           "interpolate",
@@ -2874,7 +2805,7 @@
       "source-layer": "Wahlbezirk 013",
       "minzoom": 8,
       "paint": {
-        "fill-color": "#e76f51",
+        "fill-color": "#06d6a0",
         "fill-opacity": 0.22
       }
     },
@@ -2885,8 +2816,8 @@
       "source-layer": "Wahlbezirk 013",
       "minzoom": 8,
       "paint": {
-        "line-color": "#e76f51",
-        "line-opacity": 0.55,
+        "line-color": "#06d6a0",
+        "line-opacity": 0.9,
         "line-width": [
           "interpolate",
           [
@@ -2896,13 +2827,11 @@
             "zoom"
           ],
           8,
-          0.5,
-          12,
-          1.0,
-          16,
-          1.5,
+          1,
+          14,
+          2,
           18,
-          2.0
+          3
         ]
       }
     },
@@ -2913,7 +2842,7 @@
       "source-layer": "Wahlbezirk 014",
       "minzoom": 8,
       "paint": {
-        "line-color": "#2a9d8f",
+        "line-color": "#ffd166",
         "line-opacity": 0.05,
         "line-blur": [
           "interpolate",
@@ -2958,7 +2887,7 @@
       "source-layer": "Wahlbezirk 014",
       "minzoom": 8,
       "paint": {
-        "line-color": "#2a9d8f",
+        "line-color": "#ffd166",
         "line-opacity": 0.09,
         "line-blur": [
           "interpolate",
@@ -3003,7 +2932,7 @@
       "source-layer": "Wahlbezirk 014",
       "minzoom": 8,
       "paint": {
-        "line-color": "#2a9d8f",
+        "line-color": "#ffd166",
         "line-opacity": 0.14,
         "line-blur": [
           "interpolate",
@@ -3048,7 +2977,7 @@
       "source-layer": "Wahlbezirk 014",
       "minzoom": 8,
       "paint": {
-        "line-color": "#2a9d8f",
+        "line-color": "#ffd166",
         "line-opacity": 0.22,
         "line-blur": [
           "interpolate",
@@ -3093,7 +3022,7 @@
       "source-layer": "Wahlbezirk 014",
       "minzoom": 8,
       "paint": {
-        "fill-color": "#2a9d8f",
+        "fill-color": "#ffd166",
         "fill-opacity": 0.22
       }
     },
@@ -3104,8 +3033,8 @@
       "source-layer": "Wahlbezirk 014",
       "minzoom": 8,
       "paint": {
-        "line-color": "#2a9d8f",
-        "line-opacity": 0.55,
+        "line-color": "#ffd166",
+        "line-opacity": 0.9,
         "line-width": [
           "interpolate",
           [
@@ -3115,13 +3044,11 @@
             "zoom"
           ],
           8,
-          0.5,
-          12,
-          1.0,
-          16,
-          1.5,
+          1,
+          14,
+          2,
           18,
-          2.0
+          3
         ]
       }
     },
@@ -3132,7 +3059,7 @@
       "source-layer": "Wahlbezirk 015",
       "minzoom": 8,
       "paint": {
-        "line-color": "#e9c46a",
+        "line-color": "#073b4c",
         "line-opacity": 0.05,
         "line-blur": [
           "interpolate",
@@ -3177,7 +3104,7 @@
       "source-layer": "Wahlbezirk 015",
       "minzoom": 8,
       "paint": {
-        "line-color": "#e9c46a",
+        "line-color": "#073b4c",
         "line-opacity": 0.09,
         "line-blur": [
           "interpolate",
@@ -3222,7 +3149,7 @@
       "source-layer": "Wahlbezirk 015",
       "minzoom": 8,
       "paint": {
-        "line-color": "#e9c46a",
+        "line-color": "#073b4c",
         "line-opacity": 0.14,
         "line-blur": [
           "interpolate",
@@ -3267,7 +3194,7 @@
       "source-layer": "Wahlbezirk 015",
       "minzoom": 8,
       "paint": {
-        "line-color": "#e9c46a",
+        "line-color": "#073b4c",
         "line-opacity": 0.22,
         "line-blur": [
           "interpolate",
@@ -3312,7 +3239,7 @@
       "source-layer": "Wahlbezirk 015",
       "minzoom": 8,
       "paint": {
-        "fill-color": "#e9c46a",
+        "fill-color": "#073b4c",
         "fill-opacity": 0.22
       }
     },
@@ -3323,8 +3250,8 @@
       "source-layer": "Wahlbezirk 015",
       "minzoom": 8,
       "paint": {
-        "line-color": "#e9c46a",
-        "line-opacity": 0.55,
+        "line-color": "#073b4c",
+        "line-opacity": 0.9,
         "line-width": [
           "interpolate",
           [
@@ -3334,13 +3261,11 @@
             "zoom"
           ],
           8,
-          0.5,
-          12,
-          1.0,
-          16,
-          1.5,
+          1,
+          14,
+          2,
           18,
-          2.0
+          3
         ]
       }
     },
@@ -3351,7 +3276,7 @@
       "source-layer": "Wahlbezirk 016",
       "minzoom": 8,
       "paint": {
-        "line-color": "#457b9d",
+        "line-color": "#b5838d",
         "line-opacity": 0.05,
         "line-blur": [
           "interpolate",
@@ -3396,7 +3321,7 @@
       "source-layer": "Wahlbezirk 016",
       "minzoom": 8,
       "paint": {
-        "line-color": "#457b9d",
+        "line-color": "#b5838d",
         "line-opacity": 0.09,
         "line-blur": [
           "interpolate",
@@ -3441,7 +3366,7 @@
       "source-layer": "Wahlbezirk 016",
       "minzoom": 8,
       "paint": {
-        "line-color": "#457b9d",
+        "line-color": "#b5838d",
         "line-opacity": 0.14,
         "line-blur": [
           "interpolate",
@@ -3486,7 +3411,7 @@
       "source-layer": "Wahlbezirk 016",
       "minzoom": 8,
       "paint": {
-        "line-color": "#457b9d",
+        "line-color": "#b5838d",
         "line-opacity": 0.22,
         "line-blur": [
           "interpolate",
@@ -3531,7 +3456,7 @@
       "source-layer": "Wahlbezirk 016",
       "minzoom": 8,
       "paint": {
-        "fill-color": "#457b9d",
+        "fill-color": "#b5838d",
         "fill-opacity": 0.22
       }
     },
@@ -3542,8 +3467,8 @@
       "source-layer": "Wahlbezirk 016",
       "minzoom": 8,
       "paint": {
-        "line-color": "#457b9d",
-        "line-opacity": 0.55,
+        "line-color": "#b5838d",
+        "line-opacity": 0.9,
         "line-width": [
           "interpolate",
           [
@@ -3553,13 +3478,11 @@
             "zoom"
           ],
           8,
-          0.5,
-          12,
-          1.0,
-          16,
-          1.5,
+          1,
+          14,
+          2,
           18,
-          2.0
+          3
         ]
       }
     },
@@ -3570,7 +3493,7 @@
       "source-layer": "Wahlbezirk 017",
       "minzoom": 8,
       "paint": {
-        "line-color": "#f4a261",
+        "line-color": "#4361ee",
         "line-opacity": 0.05,
         "line-blur": [
           "interpolate",
@@ -3615,7 +3538,7 @@
       "source-layer": "Wahlbezirk 017",
       "minzoom": 8,
       "paint": {
-        "line-color": "#f4a261",
+        "line-color": "#4361ee",
         "line-opacity": 0.09,
         "line-blur": [
           "interpolate",
@@ -3660,7 +3583,7 @@
       "source-layer": "Wahlbezirk 017",
       "minzoom": 8,
       "paint": {
-        "line-color": "#f4a261",
+        "line-color": "#4361ee",
         "line-opacity": 0.14,
         "line-blur": [
           "interpolate",
@@ -3705,7 +3628,7 @@
       "source-layer": "Wahlbezirk 017",
       "minzoom": 8,
       "paint": {
-        "line-color": "#f4a261",
+        "line-color": "#4361ee",
         "line-opacity": 0.22,
         "line-blur": [
           "interpolate",
@@ -3750,7 +3673,7 @@
       "source-layer": "Wahlbezirk 017",
       "minzoom": 8,
       "paint": {
-        "fill-color": "#f4a261",
+        "fill-color": "#4361ee",
         "fill-opacity": 0.22
       }
     },
@@ -3761,8 +3684,8 @@
       "source-layer": "Wahlbezirk 017",
       "minzoom": 8,
       "paint": {
-        "line-color": "#f4a261",
-        "line-opacity": 0.55,
+        "line-color": "#4361ee",
+        "line-opacity": 0.9,
         "line-width": [
           "interpolate",
           [
@@ -3772,13 +3695,11 @@
             "zoom"
           ],
           8,
-          0.5,
-          12,
-          1.0,
-          16,
-          1.5,
+          1,
+          14,
+          2,
           18,
-          2.0
+          3
         ]
       }
     },
@@ -3789,7 +3710,7 @@
       "source-layer": "Wahlbezirk 018",
       "minzoom": 8,
       "paint": {
-        "line-color": "#6a4c93",
+        "line-color": "#ff6b6b",
         "line-opacity": 0.05,
         "line-blur": [
           "interpolate",
@@ -3834,7 +3755,7 @@
       "source-layer": "Wahlbezirk 018",
       "minzoom": 8,
       "paint": {
-        "line-color": "#6a4c93",
+        "line-color": "#ff6b6b",
         "line-opacity": 0.09,
         "line-blur": [
           "interpolate",
@@ -3879,7 +3800,7 @@
       "source-layer": "Wahlbezirk 018",
       "minzoom": 8,
       "paint": {
-        "line-color": "#6a4c93",
+        "line-color": "#ff6b6b",
         "line-opacity": 0.14,
         "line-blur": [
           "interpolate",
@@ -3924,7 +3845,7 @@
       "source-layer": "Wahlbezirk 018",
       "minzoom": 8,
       "paint": {
-        "line-color": "#6a4c93",
+        "line-color": "#ff6b6b",
         "line-opacity": 0.22,
         "line-blur": [
           "interpolate",
@@ -3969,7 +3890,7 @@
       "source-layer": "Wahlbezirk 018",
       "minzoom": 8,
       "paint": {
-        "fill-color": "#6a4c93",
+        "fill-color": "#ff6b6b",
         "fill-opacity": 0.22
       }
     },
@@ -3980,8 +3901,8 @@
       "source-layer": "Wahlbezirk 018",
       "minzoom": 8,
       "paint": {
-        "line-color": "#6a4c93",
-        "line-opacity": 0.55,
+        "line-color": "#ff6b6b",
+        "line-opacity": 0.9,
         "line-width": [
           "interpolate",
           [
@@ -3991,13 +3912,11 @@
             "zoom"
           ],
           8,
-          0.5,
-          12,
-          1.0,
-          16,
-          1.5,
+          1,
+          14,
+          2,
           18,
-          2.0
+          3
         ]
       }
     },
@@ -4200,7 +4119,7 @@
       "minzoom": 8,
       "paint": {
         "line-color": "#43aa8b",
-        "line-opacity": 0.55,
+        "line-opacity": 0.9,
         "line-width": [
           "interpolate",
           [
@@ -4210,13 +4129,11 @@
             "zoom"
           ],
           8,
-          0.5,
-          12,
-          1.0,
-          16,
-          1.5,
+          1,
+          14,
+          2,
           18,
-          2.0
+          3
         ]
       }
     },
@@ -4227,7 +4144,7 @@
       "source-layer": "Wahlbezirk 020",
       "minzoom": 8,
       "paint": {
-        "line-color": "#f94144",
+        "line-color": "#f8961e",
         "line-opacity": 0.05,
         "line-blur": [
           "interpolate",
@@ -4272,7 +4189,7 @@
       "source-layer": "Wahlbezirk 020",
       "minzoom": 8,
       "paint": {
-        "line-color": "#f94144",
+        "line-color": "#f8961e",
         "line-opacity": 0.09,
         "line-blur": [
           "interpolate",
@@ -4317,7 +4234,7 @@
       "source-layer": "Wahlbezirk 020",
       "minzoom": 8,
       "paint": {
-        "line-color": "#f94144",
+        "line-color": "#f8961e",
         "line-opacity": 0.14,
         "line-blur": [
           "interpolate",
@@ -4362,7 +4279,7 @@
       "source-layer": "Wahlbezirk 020",
       "minzoom": 8,
       "paint": {
-        "line-color": "#f94144",
+        "line-color": "#f8961e",
         "line-opacity": 0.22,
         "line-blur": [
           "interpolate",
@@ -4407,7 +4324,7 @@
       "source-layer": "Wahlbezirk 020",
       "minzoom": 8,
       "paint": {
-        "fill-color": "#f94144",
+        "fill-color": "#f8961e",
         "fill-opacity": 0.22
       }
     },
@@ -4418,8 +4335,8 @@
       "source-layer": "Wahlbezirk 020",
       "minzoom": 8,
       "paint": {
-        "line-color": "#f94144",
-        "line-opacity": 0.55,
+        "line-color": "#f8961e",
+        "line-opacity": 0.9,
         "line-width": [
           "interpolate",
           [
@@ -4429,13 +4346,11 @@
             "zoom"
           ],
           8,
-          0.5,
-          12,
-          1.0,
-          16,
-          1.5,
+          1,
+          14,
+          2,
           18,
-          2.0
+          3
         ]
       }
     },
@@ -4638,7 +4553,7 @@
       "minzoom": 8,
       "paint": {
         "line-color": "#577590",
-        "line-opacity": 0.55,
+        "line-opacity": 0.9,
         "line-width": [
           "interpolate",
           [
@@ -4648,13 +4563,11 @@
             "zoom"
           ],
           8,
-          0.5,
-          12,
-          1.0,
-          16,
-          1.5,
+          1,
+          14,
+          2,
           18,
-          2.0
+          3
         ]
       }
     },
@@ -4665,7 +4578,7 @@
       "source-layer": "Wahlbezirk 022",
       "minzoom": 8,
       "paint": {
-        "line-color": "#f8961e",
+        "line-color": "#f94144",
         "line-opacity": 0.05,
         "line-blur": [
           "interpolate",
@@ -4710,7 +4623,7 @@
       "source-layer": "Wahlbezirk 022",
       "minzoom": 8,
       "paint": {
-        "line-color": "#f8961e",
+        "line-color": "#f94144",
         "line-opacity": 0.09,
         "line-blur": [
           "interpolate",
@@ -4755,7 +4668,7 @@
       "source-layer": "Wahlbezirk 022",
       "minzoom": 8,
       "paint": {
-        "line-color": "#f8961e",
+        "line-color": "#f94144",
         "line-opacity": 0.14,
         "line-blur": [
           "interpolate",
@@ -4800,7 +4713,7 @@
       "source-layer": "Wahlbezirk 022",
       "minzoom": 8,
       "paint": {
-        "line-color": "#f8961e",
+        "line-color": "#f94144",
         "line-opacity": 0.22,
         "line-blur": [
           "interpolate",
@@ -4845,7 +4758,7 @@
       "source-layer": "Wahlbezirk 022",
       "minzoom": 8,
       "paint": {
-        "fill-color": "#f8961e",
+        "fill-color": "#f94144",
         "fill-opacity": 0.22
       }
     },
@@ -4856,8 +4769,8 @@
       "source-layer": "Wahlbezirk 022",
       "minzoom": 8,
       "paint": {
-        "line-color": "#f8961e",
-        "line-opacity": 0.55,
+        "line-color": "#f94144",
+        "line-opacity": 0.9,
         "line-width": [
           "interpolate",
           [
@@ -4867,13 +4780,11 @@
             "zoom"
           ],
           8,
-          0.5,
-          12,
-          1.0,
-          16,
-          1.5,
+          1,
+          14,
+          2,
           18,
-          2.0
+          3
         ]
       }
     },
@@ -4884,7 +4795,7 @@
       "source-layer": "Wahlbezirk 023",
       "minzoom": 8,
       "paint": {
-        "line-color": "#277da1",
+        "line-color": "#90be6d",
         "line-opacity": 0.05,
         "line-blur": [
           "interpolate",
@@ -4929,7 +4840,7 @@
       "source-layer": "Wahlbezirk 023",
       "minzoom": 8,
       "paint": {
-        "line-color": "#277da1",
+        "line-color": "#90be6d",
         "line-opacity": 0.09,
         "line-blur": [
           "interpolate",
@@ -4974,7 +4885,7 @@
       "source-layer": "Wahlbezirk 023",
       "minzoom": 8,
       "paint": {
-        "line-color": "#277da1",
+        "line-color": "#90be6d",
         "line-opacity": 0.14,
         "line-blur": [
           "interpolate",
@@ -5019,7 +4930,7 @@
       "source-layer": "Wahlbezirk 023",
       "minzoom": 8,
       "paint": {
-        "line-color": "#277da1",
+        "line-color": "#90be6d",
         "line-opacity": 0.22,
         "line-blur": [
           "interpolate",
@@ -5064,7 +4975,7 @@
       "source-layer": "Wahlbezirk 023",
       "minzoom": 8,
       "paint": {
-        "fill-color": "#277da1",
+        "fill-color": "#90be6d",
         "fill-opacity": 0.22
       }
     },
@@ -5075,8 +4986,8 @@
       "source-layer": "Wahlbezirk 023",
       "minzoom": 8,
       "paint": {
-        "line-color": "#277da1",
-        "line-opacity": 0.55,
+        "line-color": "#90be6d",
+        "line-opacity": 0.9,
         "line-width": [
           "interpolate",
           [
@@ -5086,13 +4997,11 @@
             "zoom"
           ],
           8,
-          0.5,
-          12,
-          1.0,
-          16,
-          1.5,
+          1,
+          14,
+          2,
           18,
-          2.0
+          3
         ]
       }
     },
@@ -5103,7 +5012,7 @@
       "source-layer": "Wahlbezirk 024",
       "minzoom": 8,
       "paint": {
-        "line-color": "#90be6d",
+        "line-color": "#277da1",
         "line-opacity": 0.05,
         "line-blur": [
           "interpolate",
@@ -5148,7 +5057,7 @@
       "source-layer": "Wahlbezirk 024",
       "minzoom": 8,
       "paint": {
-        "line-color": "#90be6d",
+        "line-color": "#277da1",
         "line-opacity": 0.09,
         "line-blur": [
           "interpolate",
@@ -5193,7 +5102,7 @@
       "source-layer": "Wahlbezirk 024",
       "minzoom": 8,
       "paint": {
-        "line-color": "#90be6d",
+        "line-color": "#277da1",
         "line-opacity": 0.14,
         "line-blur": [
           "interpolate",
@@ -5238,7 +5147,7 @@
       "source-layer": "Wahlbezirk 024",
       "minzoom": 8,
       "paint": {
-        "line-color": "#90be6d",
+        "line-color": "#277da1",
         "line-opacity": 0.22,
         "line-blur": [
           "interpolate",
@@ -5283,7 +5192,7 @@
       "source-layer": "Wahlbezirk 024",
       "minzoom": 8,
       "paint": {
-        "fill-color": "#90be6d",
+        "fill-color": "#277da1",
         "fill-opacity": 0.22
       }
     },
@@ -5294,8 +5203,8 @@
       "source-layer": "Wahlbezirk 024",
       "minzoom": 8,
       "paint": {
-        "line-color": "#90be6d",
-        "line-opacity": 0.55,
+        "line-color": "#277da1",
+        "line-opacity": 0.9,
         "line-width": [
           "interpolate",
           [
@@ -5305,13 +5214,11 @@
             "zoom"
           ],
           8,
-          0.5,
-          12,
-          1.0,
-          16,
-          1.5,
+          1,
+          14,
+          2,
           18,
-          2.0
+          3
         ]
       }
     },
@@ -5322,7 +5229,7 @@
       "source-layer": "Wahlbezirk 025",
       "minzoom": 8,
       "paint": {
-        "line-color": "#e76f51",
+        "line-color": "#f3722c",
         "line-opacity": 0.05,
         "line-blur": [
           "interpolate",
@@ -5367,7 +5274,7 @@
       "source-layer": "Wahlbezirk 025",
       "minzoom": 8,
       "paint": {
-        "line-color": "#e76f51",
+        "line-color": "#f3722c",
         "line-opacity": 0.09,
         "line-blur": [
           "interpolate",
@@ -5412,7 +5319,7 @@
       "source-layer": "Wahlbezirk 025",
       "minzoom": 8,
       "paint": {
-        "line-color": "#e76f51",
+        "line-color": "#f3722c",
         "line-opacity": 0.14,
         "line-blur": [
           "interpolate",
@@ -5457,7 +5364,7 @@
       "source-layer": "Wahlbezirk 025",
       "minzoom": 8,
       "paint": {
-        "line-color": "#e76f51",
+        "line-color": "#f3722c",
         "line-opacity": 0.22,
         "line-blur": [
           "interpolate",
@@ -5502,7 +5409,7 @@
       "source-layer": "Wahlbezirk 025",
       "minzoom": 8,
       "paint": {
-        "fill-color": "#e76f51",
+        "fill-color": "#f3722c",
         "fill-opacity": 0.22
       }
     },
@@ -5513,8 +5420,8 @@
       "source-layer": "Wahlbezirk 025",
       "minzoom": 8,
       "paint": {
-        "line-color": "#e76f51",
-        "line-opacity": 0.55,
+        "line-color": "#f3722c",
+        "line-opacity": 0.9,
         "line-width": [
           "interpolate",
           [
@@ -5524,13 +5431,11 @@
             "zoom"
           ],
           8,
-          0.5,
-          12,
-          1.0,
-          16,
-          1.5,
+          1,
+          14,
+          2,
           18,
-          2.0
+          3
         ]
       }
     },
@@ -5541,7 +5446,7 @@
       "source-layer": "Wahlbezirk 026",
       "minzoom": 8,
       "paint": {
-        "line-color": "#2a9d8f",
+        "line-color": "#4d908e",
         "line-opacity": 0.05,
         "line-blur": [
           "interpolate",
@@ -5586,7 +5491,7 @@
       "source-layer": "Wahlbezirk 026",
       "minzoom": 8,
       "paint": {
-        "line-color": "#2a9d8f",
+        "line-color": "#4d908e",
         "line-opacity": 0.09,
         "line-blur": [
           "interpolate",
@@ -5631,7 +5536,7 @@
       "source-layer": "Wahlbezirk 026",
       "minzoom": 8,
       "paint": {
-        "line-color": "#2a9d8f",
+        "line-color": "#4d908e",
         "line-opacity": 0.14,
         "line-blur": [
           "interpolate",
@@ -5676,7 +5581,7 @@
       "source-layer": "Wahlbezirk 026",
       "minzoom": 8,
       "paint": {
-        "line-color": "#2a9d8f",
+        "line-color": "#4d908e",
         "line-opacity": 0.22,
         "line-blur": [
           "interpolate",
@@ -5721,7 +5626,7 @@
       "source-layer": "Wahlbezirk 026",
       "minzoom": 8,
       "paint": {
-        "fill-color": "#2a9d8f",
+        "fill-color": "#4d908e",
         "fill-opacity": 0.22
       }
     },
@@ -5732,8 +5637,8 @@
       "source-layer": "Wahlbezirk 026",
       "minzoom": 8,
       "paint": {
-        "line-color": "#2a9d8f",
-        "line-opacity": 0.55,
+        "line-color": "#4d908e",
+        "line-opacity": 0.9,
         "line-width": [
           "interpolate",
           [
@@ -5743,13 +5648,11 @@
             "zoom"
           ],
           8,
-          0.5,
-          12,
-          1.0,
-          16,
-          1.5,
+          1,
+          14,
+          2,
           18,
-          2.0
+          3
         ]
       }
     },
@@ -5760,7 +5663,7 @@
       "source-layer": "Wahlbezirk 027",
       "minzoom": 8,
       "paint": {
-        "line-color": "#e9c46a",
+        "line-color": "#9d4edd",
         "line-opacity": 0.05,
         "line-blur": [
           "interpolate",
@@ -5805,7 +5708,7 @@
       "source-layer": "Wahlbezirk 027",
       "minzoom": 8,
       "paint": {
-        "line-color": "#e9c46a",
+        "line-color": "#9d4edd",
         "line-opacity": 0.09,
         "line-blur": [
           "interpolate",
@@ -5850,7 +5753,7 @@
       "source-layer": "Wahlbezirk 027",
       "minzoom": 8,
       "paint": {
-        "line-color": "#e9c46a",
+        "line-color": "#9d4edd",
         "line-opacity": 0.14,
         "line-blur": [
           "interpolate",
@@ -5895,7 +5798,7 @@
       "source-layer": "Wahlbezirk 027",
       "minzoom": 8,
       "paint": {
-        "line-color": "#e9c46a",
+        "line-color": "#9d4edd",
         "line-opacity": 0.22,
         "line-blur": [
           "interpolate",
@@ -5940,7 +5843,7 @@
       "source-layer": "Wahlbezirk 027",
       "minzoom": 8,
       "paint": {
-        "fill-color": "#e9c46a",
+        "fill-color": "#9d4edd",
         "fill-opacity": 0.22
       }
     },
@@ -5951,8 +5854,8 @@
       "source-layer": "Wahlbezirk 027",
       "minzoom": 8,
       "paint": {
-        "line-color": "#e9c46a",
-        "line-opacity": 0.55,
+        "line-color": "#9d4edd",
+        "line-opacity": 0.9,
         "line-width": [
           "interpolate",
           [
@@ -5962,13 +5865,11 @@
             "zoom"
           ],
           8,
-          0.5,
-          12,
-          1.0,
-          16,
-          1.5,
+          1,
+          14,
+          2,
           18,
-          2.0
+          3
         ]
       }
     },
@@ -5979,7 +5880,7 @@
       "source-layer": "Wahlbezirk 028",
       "minzoom": 8,
       "paint": {
-        "line-color": "#457b9d",
+        "line-color": "#2b9348",
         "line-opacity": 0.05,
         "line-blur": [
           "interpolate",
@@ -6024,7 +5925,7 @@
       "source-layer": "Wahlbezirk 028",
       "minzoom": 8,
       "paint": {
-        "line-color": "#457b9d",
+        "line-color": "#2b9348",
         "line-opacity": 0.09,
         "line-blur": [
           "interpolate",
@@ -6069,7 +5970,7 @@
       "source-layer": "Wahlbezirk 028",
       "minzoom": 8,
       "paint": {
-        "line-color": "#457b9d",
+        "line-color": "#2b9348",
         "line-opacity": 0.14,
         "line-blur": [
           "interpolate",
@@ -6114,7 +6015,7 @@
       "source-layer": "Wahlbezirk 028",
       "minzoom": 8,
       "paint": {
-        "line-color": "#457b9d",
+        "line-color": "#2b9348",
         "line-opacity": 0.22,
         "line-blur": [
           "interpolate",
@@ -6159,7 +6060,7 @@
       "source-layer": "Wahlbezirk 028",
       "minzoom": 8,
       "paint": {
-        "fill-color": "#457b9d",
+        "fill-color": "#2b9348",
         "fill-opacity": 0.22
       }
     },
@@ -6170,8 +6071,8 @@
       "source-layer": "Wahlbezirk 028",
       "minzoom": 8,
       "paint": {
-        "line-color": "#457b9d",
-        "line-opacity": 0.55,
+        "line-color": "#2b9348",
+        "line-opacity": 0.9,
         "line-width": [
           "interpolate",
           [
@@ -6181,13 +6082,11 @@
             "zoom"
           ],
           8,
-          0.5,
-          12,
-          1.0,
-          16,
-          1.5,
+          1,
+          14,
+          2,
           18,
-          2.0
+          3
         ]
       }
     },
@@ -6198,7 +6097,7 @@
       "source-layer": "Wahlbezirk 029",
       "minzoom": 8,
       "paint": {
-        "line-color": "#f4a261",
+        "line-color": "#e63946",
         "line-opacity": 0.05,
         "line-blur": [
           "interpolate",
@@ -6243,7 +6142,7 @@
       "source-layer": "Wahlbezirk 029",
       "minzoom": 8,
       "paint": {
-        "line-color": "#f4a261",
+        "line-color": "#e63946",
         "line-opacity": 0.09,
         "line-blur": [
           "interpolate",
@@ -6288,7 +6187,7 @@
       "source-layer": "Wahlbezirk 029",
       "minzoom": 8,
       "paint": {
-        "line-color": "#f4a261",
+        "line-color": "#e63946",
         "line-opacity": 0.14,
         "line-blur": [
           "interpolate",
@@ -6333,7 +6232,7 @@
       "source-layer": "Wahlbezirk 029",
       "minzoom": 8,
       "paint": {
-        "line-color": "#f4a261",
+        "line-color": "#e63946",
         "line-opacity": 0.22,
         "line-blur": [
           "interpolate",
@@ -6378,7 +6277,7 @@
       "source-layer": "Wahlbezirk 029",
       "minzoom": 8,
       "paint": {
-        "fill-color": "#f4a261",
+        "fill-color": "#e63946",
         "fill-opacity": 0.22
       }
     },
@@ -6389,8 +6288,8 @@
       "source-layer": "Wahlbezirk 029",
       "minzoom": 8,
       "paint": {
-        "line-color": "#f4a261",
-        "line-opacity": 0.55,
+        "line-color": "#e63946",
+        "line-opacity": 0.9,
         "line-width": [
           "interpolate",
           [
@@ -6400,13 +6299,11 @@
             "zoom"
           ],
           8,
-          0.5,
-          12,
-          1.0,
-          16,
-          1.5,
+          1,
+          14,
+          2,
           18,
-          2.0
+          3
         ]
       }
     },
@@ -6417,7 +6314,7 @@
       "source-layer": "Wahlbezirk 030",
       "minzoom": 8,
       "paint": {
-        "line-color": "#6a4c93",
+        "line-color": "#457b9d",
         "line-opacity": 0.05,
         "line-blur": [
           "interpolate",
@@ -6462,7 +6359,7 @@
       "source-layer": "Wahlbezirk 030",
       "minzoom": 8,
       "paint": {
-        "line-color": "#6a4c93",
+        "line-color": "#457b9d",
         "line-opacity": 0.09,
         "line-blur": [
           "interpolate",
@@ -6507,7 +6404,7 @@
       "source-layer": "Wahlbezirk 030",
       "minzoom": 8,
       "paint": {
-        "line-color": "#6a4c93",
+        "line-color": "#457b9d",
         "line-opacity": 0.14,
         "line-blur": [
           "interpolate",
@@ -6552,7 +6449,7 @@
       "source-layer": "Wahlbezirk 030",
       "minzoom": 8,
       "paint": {
-        "line-color": "#6a4c93",
+        "line-color": "#457b9d",
         "line-opacity": 0.22,
         "line-blur": [
           "interpolate",
@@ -6597,7 +6494,7 @@
       "source-layer": "Wahlbezirk 030",
       "minzoom": 8,
       "paint": {
-        "fill-color": "#6a4c93",
+        "fill-color": "#457b9d",
         "fill-opacity": 0.22
       }
     },
@@ -6608,8 +6505,8 @@
       "source-layer": "Wahlbezirk 030",
       "minzoom": 8,
       "paint": {
-        "line-color": "#6a4c93",
-        "line-opacity": 0.55,
+        "line-color": "#457b9d",
+        "line-opacity": 0.9,
         "line-width": [
           "interpolate",
           [
@@ -6619,13 +6516,11 @@
             "zoom"
           ],
           8,
-          0.5,
-          12,
-          1.0,
-          16,
-          1.5,
+          1,
+          14,
+          2,
           18,
-          2.0
+          3
         ]
       }
     },
@@ -6636,7 +6531,7 @@
       "source-layer": "Wahlbezirk 031",
       "minzoom": 8,
       "paint": {
-        "line-color": "#43aa8b",
+        "line-color": "#a8dadc",
         "line-opacity": 0.05,
         "line-blur": [
           "interpolate",
@@ -6681,7 +6576,7 @@
       "source-layer": "Wahlbezirk 031",
       "minzoom": 8,
       "paint": {
-        "line-color": "#43aa8b",
+        "line-color": "#a8dadc",
         "line-opacity": 0.09,
         "line-blur": [
           "interpolate",
@@ -6726,7 +6621,7 @@
       "source-layer": "Wahlbezirk 031",
       "minzoom": 8,
       "paint": {
-        "line-color": "#43aa8b",
+        "line-color": "#a8dadc",
         "line-opacity": 0.14,
         "line-blur": [
           "interpolate",
@@ -6771,7 +6666,7 @@
       "source-layer": "Wahlbezirk 031",
       "minzoom": 8,
       "paint": {
-        "line-color": "#43aa8b",
+        "line-color": "#a8dadc",
         "line-opacity": 0.22,
         "line-blur": [
           "interpolate",
@@ -6816,7 +6711,7 @@
       "source-layer": "Wahlbezirk 031",
       "minzoom": 8,
       "paint": {
-        "fill-color": "#43aa8b",
+        "fill-color": "#a8dadc",
         "fill-opacity": 0.22
       }
     },
@@ -6827,8 +6722,8 @@
       "source-layer": "Wahlbezirk 031",
       "minzoom": 8,
       "paint": {
-        "line-color": "#43aa8b",
-        "line-opacity": 0.55,
+        "line-color": "#a8dadc",
+        "line-opacity": 0.9,
         "line-width": [
           "interpolate",
           [
@@ -6838,13 +6733,11 @@
             "zoom"
           ],
           8,
-          0.5,
-          12,
-          1.0,
-          16,
-          1.5,
+          1,
+          14,
+          2,
           18,
-          2.0
+          3
         ]
       }
     },
@@ -6855,7 +6748,7 @@
       "source-layer": "Wahlbezirk 032",
       "minzoom": 8,
       "paint": {
-        "line-color": "#f94144",
+        "line-color": "#f1faee",
         "line-opacity": 0.05,
         "line-blur": [
           "interpolate",
@@ -6900,7 +6793,7 @@
       "source-layer": "Wahlbezirk 032",
       "minzoom": 8,
       "paint": {
-        "line-color": "#f94144",
+        "line-color": "#f1faee",
         "line-opacity": 0.09,
         "line-blur": [
           "interpolate",
@@ -6945,7 +6838,7 @@
       "source-layer": "Wahlbezirk 032",
       "minzoom": 8,
       "paint": {
-        "line-color": "#f94144",
+        "line-color": "#f1faee",
         "line-opacity": 0.14,
         "line-blur": [
           "interpolate",
@@ -6990,7 +6883,7 @@
       "source-layer": "Wahlbezirk 032",
       "minzoom": 8,
       "paint": {
-        "line-color": "#f94144",
+        "line-color": "#f1faee",
         "line-opacity": 0.22,
         "line-blur": [
           "interpolate",
@@ -7035,7 +6928,7 @@
       "source-layer": "Wahlbezirk 032",
       "minzoom": 8,
       "paint": {
-        "fill-color": "#f94144",
+        "fill-color": "#f1faee",
         "fill-opacity": 0.22
       }
     },
@@ -7046,8 +6939,8 @@
       "source-layer": "Wahlbezirk 032",
       "minzoom": 8,
       "paint": {
-        "line-color": "#f94144",
-        "line-opacity": 0.55,
+        "line-color": "#f1faee",
+        "line-opacity": 0.9,
         "line-width": [
           "interpolate",
           [
@@ -7057,13 +6950,11 @@
             "zoom"
           ],
           8,
-          0.5,
-          12,
-          1.0,
-          16,
-          1.5,
+          1,
+          14,
+          2,
           18,
-          2.0
+          3
         ]
       }
     },
@@ -7074,7 +6965,7 @@
       "source-layer": "Wahlbezirk 033",
       "minzoom": 8,
       "paint": {
-        "line-color": "#577590",
+        "line-color": "#ff7096",
         "line-opacity": 0.05,
         "line-blur": [
           "interpolate",
@@ -7119,7 +7010,7 @@
       "source-layer": "Wahlbezirk 033",
       "minzoom": 8,
       "paint": {
-        "line-color": "#577590",
+        "line-color": "#ff7096",
         "line-opacity": 0.09,
         "line-blur": [
           "interpolate",
@@ -7164,7 +7055,7 @@
       "source-layer": "Wahlbezirk 033",
       "minzoom": 8,
       "paint": {
-        "line-color": "#577590",
+        "line-color": "#ff7096",
         "line-opacity": 0.14,
         "line-blur": [
           "interpolate",
@@ -7209,7 +7100,7 @@
       "source-layer": "Wahlbezirk 033",
       "minzoom": 8,
       "paint": {
-        "line-color": "#577590",
+        "line-color": "#ff7096",
         "line-opacity": 0.22,
         "line-blur": [
           "interpolate",
@@ -7254,7 +7145,7 @@
       "source-layer": "Wahlbezirk 033",
       "minzoom": 8,
       "paint": {
-        "fill-color": "#577590",
+        "fill-color": "#ff7096",
         "fill-opacity": 0.22
       }
     },
@@ -7265,8 +7156,8 @@
       "source-layer": "Wahlbezirk 033",
       "minzoom": 8,
       "paint": {
-        "line-color": "#577590",
-        "line-opacity": 0.55,
+        "line-color": "#ff7096",
+        "line-opacity": 0.9,
         "line-width": [
           "interpolate",
           [
@@ -7276,13 +7167,11 @@
             "zoom"
           ],
           8,
-          0.5,
-          12,
-          1.0,
-          16,
-          1.5,
+          1,
+          14,
+          2,
           18,
-          2.0
+          3
         ]
       }
     },
@@ -7293,7 +7182,7 @@
       "source-layer": "Wahlbezirk 034",
       "minzoom": 8,
       "paint": {
-        "line-color": "#f8961e",
+        "line-color": "#00b4d8",
         "line-opacity": 0.05,
         "line-blur": [
           "interpolate",
@@ -7338,7 +7227,7 @@
       "source-layer": "Wahlbezirk 034",
       "minzoom": 8,
       "paint": {
-        "line-color": "#f8961e",
+        "line-color": "#00b4d8",
         "line-opacity": 0.09,
         "line-blur": [
           "interpolate",
@@ -7383,7 +7272,7 @@
       "source-layer": "Wahlbezirk 034",
       "minzoom": 8,
       "paint": {
-        "line-color": "#f8961e",
+        "line-color": "#00b4d8",
         "line-opacity": 0.14,
         "line-blur": [
           "interpolate",
@@ -7428,7 +7317,7 @@
       "source-layer": "Wahlbezirk 034",
       "minzoom": 8,
       "paint": {
-        "line-color": "#f8961e",
+        "line-color": "#00b4d8",
         "line-opacity": 0.22,
         "line-blur": [
           "interpolate",
@@ -7473,7 +7362,7 @@
       "source-layer": "Wahlbezirk 034",
       "minzoom": 8,
       "paint": {
-        "fill-color": "#f8961e",
+        "fill-color": "#00b4d8",
         "fill-opacity": 0.22
       }
     },
@@ -7484,8 +7373,8 @@
       "source-layer": "Wahlbezirk 034",
       "minzoom": 8,
       "paint": {
-        "line-color": "#f8961e",
-        "line-opacity": 0.55,
+        "line-color": "#00b4d8",
+        "line-opacity": 0.9,
         "line-width": [
           "interpolate",
           [
@@ -7495,20 +7384,484 @@
             "zoom"
           ],
           8,
-          0.5,
-          12,
-          1.0,
-          16,
-          1.5,
+          1,
+          14,
+          2,
           18,
-          2.0
+          3
         ]
       }
+    },
+    {
+      "id": "stadtgrenze-glow",
+      "type": "line",
+      "source": "wahlbezirke",
+      "source-layer": "Stadtgrenze",
+      "minzoom": 8,
+      "paint": {
+        "line-color": "#264653",
+        "line-opacity": 0.15,
+        "line-blur": [
+          "interpolate",
+          [
+            "linear"
+          ],
+          [
+            "zoom"
+          ],
+          8,
+          4,
+          18,
+          10
+        ],
+        "line-width": [
+          "interpolate",
+          [
+            "linear"
+          ],
+          [
+            "zoom"
+          ],
+          8,
+          8,
+          18,
+          40
+        ]
+      },
+      "layout": {
+        "line-cap": "round",
+        "line-join": "round"
+      }
+    },
+    {
+      "id": "stadtgrenze-line",
+      "type": "line",
+      "source": "wahlbezirke",
+      "source-layer": "Stadtgrenze",
+      "minzoom": 8,
+      "paint": {
+        "line-color": "#264653",
+        "line-opacity": 0.95,
+        "line-width": [
+          "interpolate",
+          [
+            "linear"
+          ],
+          [
+            "zoom"
+          ],
+          8,
+          2,
+          14,
+          3.5,
+          18,
+          5
+        ],
+        "line-dasharray": [
+          3,
+          1.5
+        ]
+      },
+      "layout": {
+        "line-cap": "round",
+        "line-join": "round"
+      }
+    },
+    {
+      "id": "gemarkungen-line",
+      "type": "line",
+      "source": "wahlbezirke",
+      "source-layer": "Gemarkungen",
+      "minzoom": 9,
+      "paint": {
+        "line-color": "#6c757d",
+        "line-opacity": 0.6,
+        "line-width": [
+          "interpolate",
+          [
+            "linear"
+          ],
+          [
+            "zoom"
+          ],
+          9,
+          0.6,
+          14,
+          1,
+          18,
+          1.6
+        ],
+        "line-dasharray": [
+          1,
+          2
+        ]
+      }
+    },
+    {
+      "id": "grenze-ost-west-line",
+      "type": "line",
+      "source": "wahlbezirke",
+      "source-layer": "Grenze_Ost_West",
+      "minzoom": 8,
+      "paint": {
+        "line-color": "#023e8a",
+        "line-opacity": 0.85,
+        "line-width": [
+          "interpolate",
+          [
+            "linear"
+          ],
+          [
+            "zoom"
+          ],
+          8,
+          1.5,
+          14,
+          2.5,
+          18,
+          4
+        ],
+        "line-dasharray": [
+          4,
+          2
+        ]
+      }
+    },
+    {
+      "id": "wahllokal-001",
+      "type": "circle",
+      "source": "wahlbezirke",
+      "source-layer": "001 Hamdans Restaurant",
+      "minzoom": 9,
+      "paint": {
+        "circle-radius": [
+          "interpolate",
+          [
+            "linear"
+          ],
+          [
+            "zoom"
+          ],
+          9,
+          4,
+          14,
+          7,
+          18,
+          11
+        ],
+        "circle-color": "#e63946",
+        "circle-stroke-color": "#ffffff",
+        "circle-stroke-width": 2,
+        "circle-opacity": 0.95
+      }
+    },
+    {
+      "id": "wahllokal-002",
+      "type": "circle",
+      "source": "wahlbezirke",
+      "source-layer": "002-004 Grundschule Uphusen",
+      "minzoom": 9,
+      "paint": {
+        "circle-radius": [
+          "interpolate",
+          [
+            "linear"
+          ],
+          [
+            "zoom"
+          ],
+          9,
+          4,
+          14,
+          7,
+          18,
+          11
+        ],
+        "circle-color": "#e63946",
+        "circle-stroke-color": "#ffffff",
+        "circle-stroke-width": 2,
+        "circle-opacity": 0.95
+      }
+    },
+    {
+      "id": "wahllokal-003",
+      "type": "circle",
+      "source": "wahlbezirke",
+      "source-layer": "005-007 Grundschule Bierden",
+      "minzoom": 9,
+      "paint": {
+        "circle-radius": [
+          "interpolate",
+          [
+            "linear"
+          ],
+          [
+            "zoom"
+          ],
+          9,
+          4,
+          14,
+          7,
+          18,
+          11
+        ],
+        "circle-color": "#e63946",
+        "circle-stroke-color": "#ffffff",
+        "circle-stroke-width": 2,
+        "circle-opacity": 0.95
+      }
+    },
+    {
+      "id": "wahllokal-004",
+      "type": "circle",
+      "source": "wahlbezirke",
+      "source-layer": "008-011 Grundschule am Paulsberg",
+      "minzoom": 9,
+      "paint": {
+        "circle-radius": [
+          "interpolate",
+          [
+            "linear"
+          ],
+          [
+            "zoom"
+          ],
+          9,
+          4,
+          14,
+          7,
+          18,
+          11
+        ],
+        "circle-color": "#e63946",
+        "circle-stroke-color": "#ffffff",
+        "circle-stroke-width": 2,
+        "circle-opacity": 0.95
+      }
+    },
+    {
+      "id": "wahllokal-005",
+      "type": "circle",
+      "source": "wahlbezirke",
+      "source-layer": "012-014 GamMa",
+      "minzoom": 9,
+      "paint": {
+        "circle-radius": [
+          "interpolate",
+          [
+            "linear"
+          ],
+          [
+            "zoom"
+          ],
+          9,
+          4,
+          14,
+          7,
+          18,
+          11
+        ],
+        "circle-color": "#e63946",
+        "circle-stroke-color": "#ffffff",
+        "circle-stroke-width": 2,
+        "circle-opacity": 0.95
+      }
+    },
+    {
+      "id": "wahllokal-006",
+      "type": "circle",
+      "source": "wahlbezirke",
+      "source-layer": "015-018 ALS",
+      "minzoom": 9,
+      "paint": {
+        "circle-radius": [
+          "interpolate",
+          [
+            "linear"
+          ],
+          [
+            "zoom"
+          ],
+          9,
+          4,
+          14,
+          7,
+          18,
+          11
+        ],
+        "circle-color": "#e63946",
+        "circle-stroke-color": "#ffffff",
+        "circle-stroke-width": 2,
+        "circle-opacity": 0.95
+      }
+    },
+    {
+      "id": "wahllokal-007",
+      "type": "circle",
+      "source": "wahlbezirke",
+      "source-layer": "019-021 IGS Achim",
+      "minzoom": 9,
+      "paint": {
+        "circle-radius": [
+          "interpolate",
+          [
+            "linear"
+          ],
+          [
+            "zoom"
+          ],
+          9,
+          4,
+          14,
+          7,
+          18,
+          11
+        ],
+        "circle-color": "#e63946",
+        "circle-stroke-color": "#ffffff",
+        "circle-stroke-width": 2,
+        "circle-opacity": 0.95
+      }
+    },
+    {
+      "id": "wahllokal-008",
+      "type": "circle",
+      "source": "wahlbezirke",
+      "source-layer": "022-025 Grundschule Uesen",
+      "minzoom": 9,
+      "paint": {
+        "circle-radius": [
+          "interpolate",
+          [
+            "linear"
+          ],
+          [
+            "zoom"
+          ],
+          9,
+          4,
+          14,
+          7,
+          18,
+          11
+        ],
+        "circle-color": "#e63946",
+        "circle-stroke-color": "#ffffff",
+        "circle-stroke-width": 2,
+        "circle-opacity": 0.95
+      }
+    },
+    {
+      "id": "wahllokal-009",
+      "type": "circle",
+      "source": "wahlbezirke",
+      "source-layer": "026 Schützenhaus Achim",
+      "minzoom": 9,
+      "paint": {
+        "circle-radius": [
+          "interpolate",
+          [
+            "linear"
+          ],
+          [
+            "zoom"
+          ],
+          9,
+          4,
+          14,
+          7,
+          18,
+          11
+        ],
+        "circle-color": "#e63946",
+        "circle-stroke-color": "#ffffff",
+        "circle-stroke-width": 2,
+        "circle-opacity": 0.95
+      }
+    },
+    {
+      "id": "wahllokal-010",
+      "type": "circle",
+      "source": "wahlbezirke",
+      "source-layer": "027 Schützenverein Embsen",
+      "minzoom": 9,
+      "paint": {
+        "circle-radius": [
+          "interpolate",
+          [
+            "linear"
+          ],
+          [
+            "zoom"
+          ],
+          9,
+          4,
+          14,
+          7,
+          18,
+          11
+        ],
+        "circle-color": "#e63946",
+        "circle-stroke-color": "#ffffff",
+        "circle-stroke-width": 2,
+        "circle-opacity": 0.95
+      }
+    },
+    {
+      "id": "wahllokal-011",
+      "type": "circle",
+      "source": "wahlbezirke",
+      "source-layer": "028-033 Grundschule Baden",
+      "minzoom": 9,
+      "paint": {
+        "circle-radius": [
+          "interpolate",
+          [
+            "linear"
+          ],
+          [
+            "zoom"
+          ],
+          9,
+          4,
+          14,
+          7,
+          18,
+          11
+        ],
+        "circle-color": "#e63946",
+        "circle-stroke-color": "#ffffff",
+        "circle-stroke-width": 2,
+        "circle-opacity": 0.95
+      }
+    },
+    {
+      "id": "wahllokal-012",
+      "type": "circle",
+      "source": "wahlbezirke",
+      "source-layer": "034 Wachtelkönig",
+      "minzoom": 9,
+      "paint": {
+        "circle-radius": [
+          "interpolate",
+          [
+            "linear"
+          ],
+          [
+            "zoom"
+          ],
+          9,
+          4,
+          14,
+          7,
+          18,
+          11
+        ],
+        "circle-color": "#e63946",
+        "circle-stroke-color": "#ffffff",
+        "circle-stroke-width": 2,
+        "circle-opacity": 0.95
+      }
     }
-  ],
-  "center": [
-    8.95,
-    53.01
-  ],
-  "zoom": 12
+  ]
 }
