@@ -7399,7 +7399,7 @@
       "source-layer": "Stadtgrenze",
       "minzoom": 8,
       "paint": {
-        "line-color": "#264653",
+        "line-color": "#ffffff",
         "line-opacity": 0.15,
         "line-blur": [
           "interpolate",
@@ -7440,7 +7440,7 @@
       "source-layer": "Stadtgrenze",
       "minzoom": 8,
       "paint": {
-        "line-color": "#264653",
+        "line-color": "#ff0000",
         "line-opacity": 0.95,
         "line-width": [
           "interpolate",
