@@ -286,11 +286,11 @@ function setupPanel() {
 }
 
 map.on('load', () => {
-  // MapTiler-Verwaltungsgrenzen ausblenden (kollidieren sonst mit eigener Stadtgrenze)
-  map.getStyle().layers
-    .map(l => l.id)
-    .filter(id => /boundary|admin/i.test(id))
-    .forEach(id => map.setLayoutProperty(id, 'visibility', 'none'));
+  // Gezielt nur die Stadtgrenze der MapTiler-Basiskarte ausblenden
+  const streetsV2BoundaryLayerId = 'Other border';
+  if (map.getLayer(streetsV2BoundaryLayerId)) {
+    map.setLayoutProperty(streetsV2BoundaryLayerId, 'visibility', 'none');
+  }
 
   fetch('style.json')
     .then(r => r.json())
