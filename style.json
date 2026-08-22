@@ -22,7 +22,7 @@
       "minzoom": 8,
       "paint": {
         "line-color": "#e76f51",
-        "line-opacity": 0.05,
+        "line-opacity": 1,
         "line-blur": [
           "interpolate",
           [
