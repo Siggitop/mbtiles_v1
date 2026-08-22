@@ -15,6 +15,51 @@
   "glyphs": "https://api.maptiler.com/fonts/{fontstack}/{range}.pbf?key=oltvWv3Xrm4wuk400gjr",
   "layers": [
     {
+      "id": "glow-001-0",
+      "type": "line",
+      "source": "wahlbezirke",
+      "source-layer": "Stadtgrenze",
+      "minzoom": 8,
+      "paint": {
+        "line-color": "#e76f51",
+        "line-opacity": 0.05,
+        "line-blur": [
+          "interpolate",
+          [
+            "linear"
+          ],
+          [
+            "zoom"
+          ],
+          8,
+          3,
+          18,
+          8
+        ],
+        "line-width": [
+          "interpolate",
+          [
+            "linear"
+          ],
+          [
+            "zoom"
+          ],
+          8,
+          6,
+          12,
+          14,
+          16,
+          26,
+          18,
+          34
+        ]
+      },
+      "layout": {
+        "line-cap": "round",
+        "line-join": "round"
+      }
+    },
+    {
       "id": "glow-001-1",
       "type": "line",
       "source": "wahlbezirke",
