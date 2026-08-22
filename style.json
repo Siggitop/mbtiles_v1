@@ -5,7 +5,7 @@
     "wahlbezirke": {
       "type": "vector",
       "tiles": [
-        "https://siggitop.github.io/test_mbtiles/tiles/{z}/{x}/{y}.pbf"
+        "https://siggitop.github.io/mbtiles_v1/tiles/{z}/{x}/{y}.pbf"
       ],
       "minzoom": 8,
       "maxzoom": 18,
