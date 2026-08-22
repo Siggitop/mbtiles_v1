@@ -7400,7 +7400,7 @@
       "minzoom": 8,
       "paint": {
         "line-color": "#ffffff",
-        "line-opacity": 0.15,
+        "line-opacity": 0.45,
         "line-blur": [
           "interpolate",
           [
