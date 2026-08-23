@@ -3,311 +3,153 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#0B1220">
+<meta name="theme-color" content="#ffffff">
 <title>Wahlbezirke Achim</title>
 <link href="https://unpkg.com/maplibre-gl@5.13.0/dist/maplibre-gl.css" rel="stylesheet">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,560;9..144,680&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
 <style>
-:root{
-  --ink:#0B1220;
-  --ink-soft:rgba(11,18,32,.62);
-  --paper:rgba(255,255,255,.68);
-  --paper-strong:rgba(255,255,255,.9);
-  --line:rgba(11,18,32,.09);
-  --line-strong:rgba(11,18,32,.16);
-  --west:#2B5797;
-  --ost:#0F6E63;
-  --lokale:#B9861F;
-  --grenzen:#5B4636;
-  --gold:#C9A227;
-  --shadow:0 10px 40px -8px rgba(11,18,32,.28), 0 2px 10px -2px rgba(11,18,32,.12);
-  --ease:cubic-bezier(.22,1,.36,1);
+* { box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+html,body {
+  margin:0; width:100%;
+  height:100vh; height:100dvh;
+  overscroll-behavior:none;
 }
-*{ box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
-html,body{ margin:0; width:100%; height:100vh; height:100dvh; overscroll-behavior:none; background:var(--ink); }
-body{ font-family:'Inter',system-ui,-apple-system,"Segoe UI",sans-serif; color:var(--ink); }
-#map{ position:absolute; inset:0; width:100%; height:100%; }
+#map { position:absolute; inset:0; width:100%; height:100%; }
+body { font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; }
 
-::selection{ background:var(--gold); color:#fff; }
-:focus-visible{ outline:2px solid var(--gold); outline-offset:2px; border-radius:6px; }
-
-/* ---------- Panel toggle ---------- */
-#panelToggle{
-  position:absolute; z-index:7;
-  top:calc(14px + env(safe-area-inset-top));
-  left:calc(14px + env(safe-area-inset-left));
-  width:48px; height:48px; border:1px solid var(--line-strong); border-radius:14px;
-  background:var(--paper-strong); backdrop-filter:blur(18px) saturate(1.4); -webkit-backdrop-filter:blur(18px) saturate(1.4);
-  box-shadow:var(--shadow);
-  cursor:pointer; display:flex; align-items:center; justify-content:center;
-  transition:transform .25s var(--ease), box-shadow .25s var(--ease);
-}
-#panelToggle:hover{ transform:translateY(-1px); }
-#panelToggle:active{ transform:scale(.94); }
-#panelToggle svg{ width:20px; height:20px; }
-#panelToggle .bar{ transform-origin:center; transition:transform .35s var(--ease), opacity .25s var(--ease); }
-#panelToggle[aria-expanded="true"] .bar1{ transform:translateY(6px) rotate(45deg); }
-#panelToggle[aria-expanded="true"] .bar2{ opacity:0; }
-#panelToggle[aria-expanded="true"] .bar3{ transform:translateY(-6px) rotate(-45deg); }
-#panelToggle .ring{ stroke:var(--gold); stroke-width:1.4; fill:none; opacity:0; transform-origin:center; transition:opacity .3s var(--ease), transform .6s var(--ease); }
-#panelToggle[aria-expanded="true"] .ring{ opacity:.9; transform:rotate(120deg); }
-
-/* ---------- Panel ---------- */
-#panel{
+#panelToggle {
   position:absolute; z-index:6;
-  top:calc(72px + env(safe-area-inset-top));
-  left:calc(14px + env(safe-area-inset-left));
-  width:328px; max-height:calc(100% - 100px);
-  display:flex; flex-direction:column;
-  background:var(--paper); backdrop-filter:blur(22px) saturate(1.5); -webkit-backdrop-filter:blur(22px) saturate(1.5);
-  border:1px solid var(--line-strong); border-radius:20px;
-  box-shadow:var(--shadow); overflow:hidden;
-  transition:transform .32s var(--ease), opacity .28s var(--ease), filter .28s var(--ease);
+  top:calc(12px + env(safe-area-inset-top));
+  left:calc(12px + env(safe-area-inset-left));
+  width:44px; height:44px; border:none; border-radius:10px;
+  background:rgba(255,255,255,.96); box-shadow:0 4px 18px rgba(0,0,0,.18);
+  font-size:20px; line-height:1; cursor:pointer;
+  display:flex; align-items:center; justify-content:center;
 }
-#panel.hidden{ transform:translateY(-10px) scale(.98); opacity:0; filter:blur(4px); pointer-events:none; }
+#panelToggle:active { background:rgba(240,240,240,.98); }
 
-.panel-drag{ display:none; }
-
-.panel-head{ padding:18px 18px 12px; flex:none; }
-.eyebrow{
-  font-family:'IBM Plex Mono',monospace; font-size:10.5px; letter-spacing:.14em; text-transform:uppercase;
-  color:var(--ink-soft); display:flex; align-items:center; gap:8px; margin-bottom:2px;
+#panel {
+  position:absolute; z-index:5;
+  top:calc(64px + env(safe-area-inset-top));
+  left:calc(12px + env(safe-area-inset-left));
+  width:300px; max-height:calc(100% - 88px);
+  overflow:auto; -webkit-overflow-scrolling:touch;
+  background:rgba(255,255,255,.97); border-radius:12px;
+  box-shadow:0 4px 18px rgba(0,0,0,.18); padding:14px;
+  transition:transform .2s ease, opacity .2s ease;
 }
-.eyebrow .dot{ width:6px; height:6px; border-radius:50%; background:var(--gold); animation:pulse 2.2s ease-in-out infinite; }
-h1{ font-family:'Fraunces',serif; font-weight:680; font-optical-sizing:auto; font-size:26px; margin:0; letter-spacing:-.01em; }
-.sub{ font-size:12.5px; color:var(--ink-soft); margin-top:2px; }
+#panel.hidden { transform:translateY(-8px); opacity:0; pointer-events:none; }
 
-.search-row{
-  margin:14px 0 4px; position:relative; display:flex; align-items:center;
+#panel h2 { margin:0 0 8px; font-size:18px; }
+
+.section { margin-top:4px; }
+.section-header {
+  display:flex; align-items:center; justify-content:space-between;
+  padding:8px 4px; cursor:pointer; user-select:none;
+  font-weight:600; font-size:14px; border-top:1px solid #eee;
 }
-.search-row svg{ position:absolute; left:12px; width:15px; height:15px; color:var(--ink-soft); pointer-events:none; }
-#searchInput{
-  width:100%; height:38px; border-radius:11px; border:1px solid var(--line-strong);
-  background:rgba(255,255,255,.6); padding:0 12px 0 34px; font-size:13.5px; font-family:inherit; color:var(--ink);
-  transition:border-color .2s, background .2s, box-shadow .2s;
+.section-header .chevron { transition:transform .15s ease; font-size:12px; color:#888; }
+.section-header.collapsed .chevron { transform:rotate(-90deg); }
+.section-body { display:block; }
+.section-body.collapsed { display:none; }
+
+.district, .toplevel {
+  display:flex; align-items:center; gap:10px;
+  padding:8px 4px; font-size:14px;
+  min-height:40px; border-radius:8px;
 }
-#searchInput::placeholder{ color:var(--ink-soft); }
-#searchInput:focus{ outline:none; border-color:var(--gold); background:rgba(255,255,255,.85); box-shadow:0 0 0 3px rgba(201,162,39,.18); }
+.toplevel { font-weight:600; }
+.district:active, .toplevel:active { background:rgba(0,0,0,.05); }
+.district input, .toplevel input { margin:0; width:19px; height:19px; flex:none; }
 
-.quick-actions{ display:flex; gap:8px; margin-top:10px; }
-.quick-actions button{
-  flex:1; font-family:'IBM Plex Mono',monospace; font-size:10.5px; letter-spacing:.06em; text-transform:uppercase;
-  border:1px solid var(--line-strong); background:rgba(255,255,255,.45); color:var(--ink-soft);
-  border-radius:9px; padding:7px 0; cursor:pointer; transition:background .18s,color .18s,transform .12s;
-}
-.quick-actions button:hover{ background:rgba(255,255,255,.75); color:var(--ink); }
-.quick-actions button:active{ transform:scale(.96); }
-
-.panel-body{ overflow:auto; -webkit-overflow-scrolling:touch; padding:2px 10px 14px; flex:1 1 auto; }
-.panel-body::-webkit-scrollbar{ width:8px; }
-.panel-body::-webkit-scrollbar-thumb{ background:rgba(11,18,32,.18); border-radius:8px; }
-
-.section{ border-top:1px solid var(--line); margin-top:2px; }
-.section:first-child{ border-top:none; }
-.section-header{
-  display:flex; align-items:center; gap:10px; padding:11px 6px; cursor:pointer; user-select:none;
-  border-left:3px solid transparent; border-radius:8px; transition:background .15s;
-}
-.section-header:hover{ background:rgba(255,255,255,.35); }
-.section[data-accent="west"] .section-header{ border-left-color:var(--west); }
-.section[data-accent="ost"] .section-header{ border-left-color:var(--ost); }
-.section[data-accent="lokale"] .section-header{ border-left-color:var(--lokale); }
-.section[data-accent="grenzen"] .section-header{ border-left-color:var(--grenzen); }
-
-.toplevel{ display:flex; align-items:center; gap:10px; flex:1; padding:0; font-weight:600; font-size:14px; min-width:0; }
-.toplevel .name{ flex:1; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
-.count{ font-family:'IBM Plex Mono',monospace; font-size:10.5px; color:var(--ink-soft); background:rgba(11,18,32,.06); padding:2px 7px; border-radius:20px; flex:none; }
-.chevron{ width:9px; height:9px; border-right:1.6px solid var(--ink-soft); border-bottom:1.6px solid var(--ink-soft); transform:rotate(45deg); transition:transform .25s var(--ease); flex:none; }
-.section-header.open .chevron{ transform:rotate(-135deg); }
-
-.section-body{ display:grid; grid-template-rows:0fr; transition:grid-template-rows .32s var(--ease); }
-.section-body.open{ grid-template-rows:1fr; }
-.section-body > div{ overflow:hidden; }
-.section-list{ padding:2px 4px 8px; }
-
-.district{
-  display:flex; align-items:center; gap:10px; padding:8px 6px; font-size:13.5px; min-height:36px;
-  border-radius:9px; transition:background .15s, opacity .2s, max-height .2s;
-  animation:rowIn .3s var(--ease) both;
-}
-.district:hover{ background:rgba(255,255,255,.4); }
-.district.filtered-out{ display:none; }
-.code{ font-family:'IBM Plex Mono',monospace; font-size:10.5px; color:var(--ink-soft); background:rgba(11,18,32,.06); border-radius:6px; padding:2px 6px; flex:none; min-width:30px; text-align:center; }
-.dlabel{ flex:1; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
-
-/* switch */
-.district input[type="checkbox"], .toplevel input[type="checkbox"]{
-  appearance:none; -webkit-appearance:none; order:2; margin-left:auto; flex:none;
-  width:34px; height:20px; border-radius:20px; background:rgba(11,18,32,.16);
-  position:relative; cursor:pointer; transition:background .22s var(--ease); border:none;
-}
-.district input[type="checkbox"]::after, .toplevel input[type="checkbox"]::after{
-  content:''; position:absolute; top:2px; left:2px; width:16px; height:16px; border-radius:50%;
-  background:#fff; box-shadow:0 1px 3px rgba(0,0,0,.3); transition:transform .22s var(--ease);
-}
-.district input[type="checkbox"]:checked, .toplevel input[type="checkbox"]:checked{ background:var(--gold); }
-.district input[type="checkbox"]:checked::after, .toplevel input[type="checkbox"]:checked::after{ transform:translateX(14px); }
-
-.section-body:not(.open) .district{ animation:none; }
-
-/* ---------- loading ---------- */
-#loading{
-  position:absolute; z-index:10; left:50%; top:50%; transform:translate(-50%,-50%);
-  background:var(--paper-strong); backdrop-filter:blur(18px); -webkit-backdrop-filter:blur(18px);
-  padding:16px 22px; border-radius:16px; box-shadow:var(--shadow);
-  font-size:13px; color:var(--ink); display:flex; align-items:center; gap:10px;
-  border:1px solid var(--line-strong); transition:opacity .3s var(--ease);
-}
-#loading .spinner{ width:16px; height:16px; border-radius:50%; border:2px solid rgba(11,18,32,.15); border-top-color:var(--gold); animation:spin .8s linear infinite; }
-
-/* ---------- popup ---------- */
-.maplibregl-popup{ max-width:min(320px, calc(100vw - 32px)) !important; animation:popIn .18s var(--ease); }
-.maplibregl-popup-content{
-  max-width:100%; padding:0; max-height:60vh; overflow:hidden; border-radius:16px !important;
-  background:var(--paper-strong) !important; backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px);
-  box-shadow:var(--shadow) !important; border:1px solid var(--line-strong);
-}
-.maplibregl-popup-tip{ display:none; }
-.maplibregl-popup-close-button{
-  font-size:18px; color:var(--ink-soft); right:6px; top:6px; width:26px; height:26px; border-radius:8px;
-  transition:background .15s;
-}
-.maplibregl-popup-close-button:hover{ background:rgba(11,18,32,.08); }
-.pop-head{ padding:12px 34px 10px 16px; font-family:'Fraunces',serif; font-weight:560; font-size:15.5px; border-bottom:1px solid var(--line); }
-.pop-head .kicker{ display:block; font-family:'IBM Plex Mono',monospace; font-weight:500; font-size:9.5px; letter-spacing:.1em; text-transform:uppercase; margin-bottom:2px; }
-.pop-body{ overflow:auto; max-height:44vh; padding:4px 0; }
-.attr{ border-collapse:collapse; width:100%; font-size:12px; }
-.attr td{ padding:6px 16px; border-bottom:1px solid var(--line); vertical-align:top; }
-.attr tr:last-child td{ border-bottom:none; }
-.attr td:first-child{ font-family:'IBM Plex Mono',monospace; font-size:10.5px; color:var(--ink-soft); width:42%; }
-.pop-empty{ padding:12px 16px; font-size:12.5px; color:var(--ink-soft); }
-
-.maplibregl-ctrl-top-right{ top:calc(0px + env(safe-area-inset-top)); right:calc(0px + env(safe-area-inset-right)); }
-.maplibregl-ctrl-bottom-right{ bottom:calc(0px + env(safe-area-inset-bottom)); right:calc(0px + env(safe-area-inset-right)); }
-.maplibregl-ctrl-group{ border-radius:12px !important; overflow:hidden; box-shadow:var(--shadow) !important; border:1px solid var(--line-strong) !important; }
-
-/* ---------- animations ---------- */
-@keyframes pulse{ 0%,100%{ opacity:1; transform:scale(1);} 50%{ opacity:.4; transform:scale(.7);} }
-@keyframes spin{ to{ transform:rotate(360deg); } }
-@keyframes popIn{ from{ opacity:0; transform:translateY(4px) scale(.97);} to{ opacity:1; transform:none; } }
-@keyframes rowIn{ from{ opacity:0; transform:translateY(3px);} to{ opacity:1; transform:none; } }
-@keyframes sheetIn{ from{ opacity:0; transform:translateY(24px);} to{ opacity:1; transform:none; } }
-
-@media (prefers-reduced-motion: reduce){
-  *{ animation-duration:.001s !important; transition-duration:.001s !important; }
+#loading {
+  position:absolute; z-index:10; left:50%; top:50%;
+  transform:translate(-50%,-50%); background:white;
+  padding:12px 16px; border-radius:10px;
+  box-shadow:0 4px 18px rgba(0,0,0,.2);
+  font-size:14px;
 }
 
-/* ---------- mobile ---------- */
-@media (max-width:680px){
-  #panel{
-    top:auto; left:0; right:0; bottom:0; width:100%;
-    max-height:62vh; height:auto;
-    border-radius:20px 20px 0 0; border-bottom:none;
-    transform:translateY(0); animation:sheetIn .35s var(--ease);
+.maplibregl-popup { max-width:min(320px, calc(100vw - 32px)) !important; }
+.maplibregl-popup-content {
+  max-width:100%; padding:12px;
+  max-height:60vh; overflow:auto;
+}
+.attr { border-collapse:collapse; width:100%; font-size:12px; }
+.attr td { padding:5px 4px; border-bottom:1px solid #eee; vertical-align:top; }
+.attr td:first-child { font-weight:600; width:42%; }
+
+.maplibregl-ctrl-top-right {
+  top:calc(0px + env(safe-area-inset-top));
+  right:calc(0px + env(safe-area-inset-right));
+}
+.maplibregl-ctrl-bottom-right {
+  bottom:calc(0px + env(safe-area-inset-bottom));
+  right:calc(0px + env(safe-area-inset-right));
+}
+
+@media (max-width:680px) {
+  #panel {
+    top:auto; left:0; right:0; bottom:0;
+    width:100%; max-height:55vh;
+    border-radius:16px 16px 0 0;
+    padding:12px 16px calc(14px + env(safe-area-inset-bottom));
+    transform:translateY(0);
   }
-  #panel.hidden{ transform:translateY(100%); opacity:1; filter:none; }
-  #panel.peek .panel-body{ display:none; }
-  #panel.peek{ max-height:none; }
-  .panel-drag{
-    display:flex; justify-content:center; padding:9px 0 2px; cursor:grab; touch-action:none;
-  }
-  .panel-drag::after{ content:''; width:36px; height:4px; border-radius:4px; background:var(--line-strong); }
-  .panel-head{ padding:2px 18px 10px; }
-  h1{ font-size:21px; }
-  #panel.peek .panel-head{ padding-bottom:calc(14px + env(safe-area-inset-bottom)); }
-  #panel.peek .quick-actions, #panel.peek .search-row{ display:none; }
-  #panel:not(.peek) .panel-body{ padding-bottom:calc(14px + env(safe-area-inset-bottom)); }
-  .maplibregl-ctrl-group{ transform:scale(.92); transform-origin:top right; }
+  #panel.hidden { transform:translateY(100%); opacity:1; }
+  #panel h2 { font-size:16px; }
+  .maplibregl-ctrl-group { transform:scale(.92); transform-origin:top right; }
 }
 </style>
 </head>
 <body>
 <div id="map"></div>
-
-<div id="loading"><span class="spinner"></span> Karte wird geladen …</div>
-
-<button id="panelToggle" type="button" aria-label="Layer ein-/ausblenden" aria-expanded="false">
-  <svg viewBox="0 0 24 24">
-    <circle class="ring" cx="12" cy="12" r="10.4" stroke-dasharray="2 4"></circle>
-    <rect class="bar bar1" x="4" y="6.5" width="16" height="1.8" rx="0.9" fill="#0B1220"></rect>
-    <rect class="bar bar2" x="4" y="11.1" width="16" height="1.8" rx="0.9" fill="#0B1220"></rect>
-    <rect class="bar bar3" x="4" y="15.7" width="16" height="1.8" rx="0.9" fill="#0B1220"></rect>
-  </svg>
-</button>
-
+<div id="loading">Karte wird geladen …</div>
+<button id="panelToggle" type="button" aria-label="Layer ein-/ausblenden" aria-expanded="false">☰</button>
 <div id="panel" class="hidden">
-  <div class="panel-drag" id="panelDrag"></div>
-  <div class="panel-head">
-    <span class="eyebrow"><span class="dot"></span>Kommunalwahl 2026</span>
-    <h1>Achim</h1>
-    <div class="sub">Wahlbezirke &amp; Wahllokale</div>
+  <h2>Achim – Wahlbezirke</h2>
 
-    <div class="search-row">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"></circle><line x1="21" y1="21" x2="16.6" y2="16.6"></line></svg>
-      <input id="searchInput" type="text" placeholder="Bezirk oder Wahllokal suchen …" autocomplete="off">
+  <div class="section">
+    <div class="section-header collapsed" data-target="sec-bezirke-1">
+      <label class="toplevel" style="padding:0;">
+        <input id="all-bezirke-1" type="checkbox" checked> Achim West
+      </label>
+      <span class="chevron">▾</span>
     </div>
-    <div class="quick-actions">
-      <button type="button" id="allOnBtn">Alle ein</button>
-      <button type="button" id="allOffBtn">Alle aus</button>
-    </div>
+    <div class="section-body collapsed" id="sec-bezirke-1"></div>
   </div>
 
-  <div class="panel-body">
-
-    <div class="section" data-accent="west">
-      <div class="section-header" data-target="sec-bezirke-1">
-        <label class="toplevel" style="padding:0;">
-          <input id="all-bezirke-1" type="checkbox" checked>
-          <span class="name">Achim West</span>
-        </label>
-        <span class="count" id="count-bezirke-1"></span>
-        <span class="chevron"></span>
-      </div>
-      <div class="section-body" id="sec-bezirke-1"><div class="section-list"></div></div>
+  <div class="section">
+    <div class="section-header collapsed" data-target="sec-bezirke-2">
+      <label class="toplevel" style="padding:0;">
+        <input id="all-bezirke-2" type="checkbox" checked> Achim Ost
+      </label>
+      <span class="chevron">▾</span>
     </div>
+    <div class="section-body collapsed" id="sec-bezirke-2"></div>
+  </div>
 
-    <div class="section" data-accent="ost">
-      <div class="section-header" data-target="sec-bezirke-2">
-        <label class="toplevel" style="padding:0;">
-          <input id="all-bezirke-2" type="checkbox" checked>
-          <span class="name">Achim Ost</span>
-        </label>
-        <span class="count" id="count-bezirke-2"></span>
-        <span class="chevron"></span>
-      </div>
-      <div class="section-body" id="sec-bezirke-2"><div class="section-list"></div></div>
+  <div class="section">
+    <div class="section-header collapsed" data-target="sec-lokale">
+      <label class="toplevel" style="padding:0;">
+        <input id="all-lokale" type="checkbox" checked> Wahllokale
+      </label>
+      <span class="chevron">▾</span>
     </div>
+    <div class="section-body collapsed" id="sec-lokale"></div>
+  </div>
 
-    <div class="section" data-accent="lokale">
-      <div class="section-header" data-target="sec-lokale">
-        <label class="toplevel" style="padding:0;">
-          <input id="all-lokale" type="checkbox" checked>
-          <span class="name">Wahllokale</span>
-        </label>
-        <span class="count" id="count-lokale"></span>
-        <span class="chevron"></span>
-      </div>
-      <div class="section-body" id="sec-lokale"><div class="section-list"></div></div>
+  <div class="section">
+    <div class="section-header collapsed" data-target="sec-grenzen">
+      <label class="toplevel" style="padding:0;">
+        <input id="all-grenzen" type="checkbox" checked> Grenzen
+      </label>
+      <span class="chevron">▾</span>
     </div>
-
-    <div class="section" data-accent="grenzen">
-      <div class="section-header" data-target="sec-grenzen">
-        <label class="toplevel" style="padding:0;">
-          <input id="all-grenzen" type="checkbox" checked>
-          <span class="name">Grenzen</span>
-        </label>
-        <span class="count" id="count-grenzen"></span>
-        <span class="chevron"></span>
-      </div>
-      <div class="section-body" id="sec-grenzen"><div class="section-list">
-        <label class="district"><span class="dlabel">Stadtgrenze</span><input type="checkbox" checked data-layers="stadtgrenze-glow,stadtgrenze-line"></label>
-        <label class="district"><span class="dlabel">Gemarkungen</span><input type="checkbox" checked data-layers="gemarkungen-line"></label>
-        <label class="district"><span class="dlabel">Grenze Ost-West</span><input type="checkbox" checked data-layers="grenze-ost-west-line"></label>
-      </div></div>
+    <div class="section-body collapsed" id="sec-grenzen">
+      <label class="district"><input type="checkbox" checked data-layers="stadtgrenze-glow,stadtgrenze-line"> Stadtgrenze</label>
+      <label class="district"><input type="checkbox" checked data-layers="gemarkungen-line"> Gemarkungen</label>
+      <label class="district"><input type="checkbox" checked data-layers="grenze-ost-west-line"> Grenze Ost-West</label>
     </div>
-
   </div>
 </div>
 
@@ -336,7 +178,7 @@ const map = new maplibregl.Map({
 map.addControl(new maplibregl.NavigationControl({showCompass:false}), 'top-right');
 map.addControl(new maplibregl.ScaleControl({maxWidth:120, unit:'metric'}), 'bottom-right');
 
-/* ---------- Panel open/close ---------- */
+// Panel-Toggle
 const panel = document.getElementById('panel');
 const panelToggle = document.getElementById('panelToggle');
 function setPanelOpen(open) {
@@ -346,39 +188,16 @@ function setPanelOpen(open) {
 panelToggle.addEventListener('click', () => setPanelOpen(panel.classList.contains('hidden')));
 setPanelOpen(window.innerWidth > 680);
 
-/* ---------- Mobile bottom-sheet: drag handle ---------- */
-const panelDrag = document.getElementById('panelDrag');
-if (window.innerWidth <= 680) panel.classList.add('peek');
-panelDrag.addEventListener('click', () => panel.classList.toggle('peek'));
-(function enableDragGesture(){
-  let startY = null;
-  panelDrag.addEventListener('pointerdown', e => { startY = e.clientY; });
-  window.addEventListener('pointerup', e => {
-    if (startY === null) return;
-    const dy = e.clientY - startY;
-    if (dy > 30) panel.classList.add('peek');
-    else if (dy < -30) panel.classList.remove('peek');
-    startY = null;
-  });
-})();
-
-/* ---------- Sections (accordion, animated height) ---------- */
+// Abschnitte ein-/ausklappbar (spart Platz auf kleinen Screens)
 document.querySelectorAll('.section-header').forEach(header => {
   header.addEventListener('click', (e) => {
-    if (e.target.closest('input')) return;
+    if (e.target.tagName === 'INPUT') return;
     const body = document.getElementById(header.dataset.target);
-    header.classList.toggle('open');
-    body.classList.toggle('open');
+    header.classList.toggle('collapsed');
+    body.classList.toggle('collapsed');
   });
 });
 
-/* ---------- Popup ---------- */
-function categorize(feature) {
-  const id = feature.layer && feature.layer.id || '';
-  if (id.startsWith('wahllokal-')) return { label:'Wahllokal', accent:'var(--lokale)' };
-  if (id.startsWith('fill-') || id.startsWith('line-') || id.startsWith('glow-')) return { label:'Wahlbezirk', accent:'var(--west)' };
-  return { label:'Grenze', accent:'var(--grenzen)' };
-}
 function fillPopup(feature) {
   const props = feature.properties || {};
   const keys = Object.keys(props).filter(k => props[k] !== null && props[k] !== '');
@@ -386,12 +205,8 @@ function fillPopup(feature) {
   const rows = keys.slice(0,40).map(k =>
     `<tr><td>${k}</td><td>${String(props[k])}</td></tr>`
   ).join('');
-  const cat = categorize(feature);
-  const title = feature.layer['source-layer'] || 'Objekt';
-  return `<div class="pop-head" style="border-left:3px solid ${cat.accent}; padding-left:13px;">
-            <span class="kicker" style="color:${cat.accent}">${cat.label}</span>${title}
-          </div>
-          <div class="pop-body">${rows ? `<table class="attr">${rows}</table>` : '<div class="pop-empty">Keine Attribute vorhanden.</div>'}</div>`;
+  return `<b>${feature.layer['source-layer'] || 'Objekt'}</b>` +
+         (rows ? `<table class="attr">${rows}</table>` : '<p>Keine Attribute vorhanden.</p>');
 }
 
 function setLayers(ids, visible) {
@@ -400,86 +215,45 @@ function setLayers(ids, visible) {
   });
 }
 
-/* ---------- Search filter ---------- */
-function applyFilter(query) {
-  const q = query.trim().toLowerCase();
-  document.querySelectorAll('.district').forEach(row => {
-    const text = row.querySelector('.dlabel').textContent.toLowerCase();
-    const match = !q || text.includes(q);
-    row.classList.toggle('filtered-out', !match);
-  });
-  document.querySelectorAll('.section').forEach(section => {
-    const header = section.querySelector('.section-header');
-    const body = section.querySelector('.section-body');
-    const anyVisible = [...section.querySelectorAll('.district')].some(r => !r.classList.contains('filtered-out'));
-    if (q) {
-      if (anyVisible && !body.classList.contains('open')) { header.classList.add('open'); body.classList.add('open'); }
-      section.style.display = anyVisible ? '' : 'none';
-    } else {
-      section.style.display = '';
-    }
-  });
-}
-document.getElementById('searchInput').addEventListener('input', e => applyFilter(e.target.value));
-
-/* ---------- Quick actions ---------- */
-function setAllToggles(checked) {
-  ['all-bezirke-1','all-bezirke-2','all-lokale','all-grenzen'].forEach(id => {
-    const el = document.getElementById(id);
-    if (el.checked !== checked) { el.checked = checked; el.dispatchEvent(new Event('change')); }
-  });
-}
-document.getElementById('allOnBtn').addEventListener('click', () => setAllToggles(true));
-document.getElementById('allOffBtn').addEventListener('click', () => setAllToggles(false));
-
 function setupPanel() {
   // Wahlbezirke, aufgeteilt in zwei Gruppen (001-018 / 019-034)
-  const bezirkeContainer1 = document.querySelector('#sec-bezirke-1 .section-list');
-  const bezirkeContainer2 = document.querySelector('#sec-bezirke-2 .section-list');
+  const bezirkeContainer1 = document.getElementById('sec-bezirke-1');
+  const bezirkeContainer2 = document.getElementById('sec-bezirke-2');
   function bezirkLayerIds(i) {
     const idx = String(i+1).padStart(3,'0');
     return [`fill-${idx}`, `line-${idx}`, ...[1,2,3,4].map(g => `glow-${idx}-${g}`)];
   }
   districts.forEach((name, i) => {
     const container = i < 18 ? bezirkeContainer1 : bezirkeContainer2;
-    const code = name.match(/\d+/)?.[0] || String(i+1).padStart(3,'0');
     const layerIds = bezirkLayerIds(i);
     const row = document.createElement('label');
     row.className = 'district';
-    row.style.animationDelay = `${(i % 18) * 12}ms`;
-    row.innerHTML = `<span class="code">${code}</span><span class="dlabel">Wahlbezirk</span><input type="checkbox" checked>`;
+    row.innerHTML = `<input type="checkbox" checked> ${name}`;
     row.querySelector('input').addEventListener('change', e => setLayers(layerIds, e.target.checked));
     container.appendChild(row);
   });
-  document.getElementById('count-bezirke-1').textContent = '18';
-  document.getElementById('count-bezirke-2').textContent = '16';
-
   document.getElementById('all-bezirke-1').addEventListener('change', e => {
-    document.querySelectorAll('#sec-bezirke-1 .district input').forEach(x => x.checked = e.target.checked);
+    document.querySelectorAll('#sec-bezirke-1 input').forEach(x => x.checked = e.target.checked);
     districts.forEach((_, i) => { if (i < 18) setLayers(bezirkLayerIds(i), e.target.checked); });
   });
   document.getElementById('all-bezirke-2').addEventListener('change', e => {
-    document.querySelectorAll('#sec-bezirke-2 .district input').forEach(x => x.checked = e.target.checked);
+    document.querySelectorAll('#sec-bezirke-2 input').forEach(x => x.checked = e.target.checked);
     districts.forEach((_, i) => { if (i >= 18) setLayers(bezirkLayerIds(i), e.target.checked); });
   });
 
   // Wahllokale
-  const lokaleContainer = document.querySelector('#sec-lokale .section-list');
+  const lokaleContainer = document.getElementById('sec-lokale');
   wahllokale.forEach((name, i) => {
     const wid = String(i+1).padStart(3,'0');
     const layerIds = [`wahllokal-${wid}`];
     const row = document.createElement('label');
     row.className = 'district';
-    row.style.animationDelay = `${i * 12}ms`;
-    row.innerHTML = `<span class="dlabel">${name}</span><input type="checkbox" checked>`;
+    row.innerHTML = `<input type="checkbox" checked> ${name}`;
     row.querySelector('input').addEventListener('change', e => setLayers(layerIds, e.target.checked));
     lokaleContainer.appendChild(row);
   });
-  document.getElementById('count-lokale').textContent = String(wahllokale.length);
-  document.getElementById('count-grenzen').textContent = '3';
-
   document.getElementById('all-lokale').addEventListener('change', e => {
-    document.querySelectorAll('#sec-lokale .district input').forEach(x => x.checked = e.target.checked);
+    document.querySelectorAll('#sec-lokale input').forEach(x => x.checked = e.target.checked);
     wahllokale.forEach((_, i) => {
       const wid = String(i+1).padStart(3,'0');
       setLayers([`wahllokal-${wid}`], e.target.checked);
@@ -523,14 +297,12 @@ map.on('load', () => {
     .then(own => {
       map.addSource('wahlbezirke', own.sources.wahlbezirke);
       own.layers.forEach(layer => map.addLayer(layer));
-      const loading = document.getElementById('loading');
-      loading.style.opacity = '0';
-      setTimeout(() => loading.remove(), 300);
+      document.getElementById('loading').remove();
       setupPanel();
     })
     .catch(err => {
       console.error('Konnte eigene style.json nicht laden:', err);
-      document.getElementById('loading').innerHTML = 'Fehler beim Laden der Wahlbezirke.';
+      document.getElementById('loading').textContent = 'Fehler beim Laden der Wahlbezirke.';
     });
 });
 
