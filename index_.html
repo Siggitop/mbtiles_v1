@@ -61,18 +61,6 @@ body { font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-se
 .district:active, .toplevel:active { background:rgba(0,0,0,.05); }
 .district input, .toplevel input { margin:0; width:19px; height:19px; flex:none; }
 
-.subgroup { margin-left:8px; }
-.subgroup-header {
-  display:flex; align-items:center; justify-content:space-between;
-  padding:6px 4px; cursor:pointer; user-select:none;
-  font-size:14px; font-weight:500;
-}
-.subgroup-header .chevron { transition:transform .15s ease; font-size:11px; color:#888; }
-.subgroup-header.collapsed .chevron { transform:rotate(-90deg); }
-.subgroup-body { display:block; margin-left:14px; }
-.subgroup-body.collapsed { display:none; }
-.subgroup-header .toplevel { font-weight:500; padding:0; }
-
 #loading {
   position:absolute; z-index:10; left:50%; top:50%;
   transform:translate(-50%,-50%); background:white;
@@ -228,73 +216,22 @@ function setLayers(ids, visible) {
 }
 
 function setupPanel() {
-  // Wahlbezirke, aufgeteilt in zwei Gruppen (001-018 / 019-034),
-  // innerhalb jeweils in Bereichsgruppen unterteilt; Einzelbezirke ohne eigene Gruppe
+  // Wahlbezirke, aufgeteilt in zwei Gruppen (001-018 / 019-034)
   const bezirkeContainer1 = document.getElementById('sec-bezirke-1');
   const bezirkeContainer2 = document.getElementById('sec-bezirke-2');
   function bezirkLayerIds(i) {
     const idx = String(i+1).padStart(3,'0');
     return [`fill-${idx}`, `line-${idx}`, ...[1,2,3,4].map(g => `glow-${idx}-${g}`)];
   }
-
-  // Bereichsgruppen: [von, bis] als 1-basierte Wahlbezirk-Nummern
-  const groupRanges = [
-    [1,1], [2,4], [5,7], [8,11], [12,14], [15,18],
-    [19,21], [22,25], [26,26], [27,27], [28,33], [34,34]
-  ];
-
-  function makeDistrictRow(i) {
+  districts.forEach((name, i) => {
+    const container = i < 18 ? bezirkeContainer1 : bezirkeContainer2;
     const layerIds = bezirkLayerIds(i);
     const row = document.createElement('label');
     row.className = 'district';
-    row.innerHTML = `<input type="checkbox" checked> ${districts[i]}`;
+    row.innerHTML = `<input type="checkbox" checked> ${name}`;
     row.querySelector('input').addEventListener('change', e => setLayers(layerIds, e.target.checked));
-    return row;
-  }
-
-  let subgroupCounter = 0;
-  groupRanges.forEach(([from, to]) => {
-    const container = (from <= 18) ? bezirkeContainer1 : bezirkeContainer2;
-    const indices = [];
-    for (let n = from; n <= to; n++) indices.push(n - 1);
-
-    // Jede Gruppe (auch Einzelbezirke) als eigene ein-/ausklappbare Untergruppe
-    subgroupCounter++;
-    const bodyId = `sub-bezirke-${subgroupCounter}`;
-    const allId = `all-sub-bezirke-${subgroupCounter}`;
-    const label = (from === to)
-      ? String(from).padStart(3,'0')
-      : `${String(from).padStart(3,'0')}\u2013${String(to).padStart(3,'0')}`;
-
-    const wrapper = document.createElement('div');
-    wrapper.className = 'subgroup';
-
-    const header = document.createElement('div');
-    header.className = 'subgroup-header collapsed';
-    header.dataset.target = bodyId;
-    header.innerHTML = `<label class="toplevel"><input id="${allId}" type="checkbox" checked> ${label}</label><span class="chevron">\u25be</span>`;
-
-    const body = document.createElement('div');
-    body.className = 'subgroup-body collapsed';
-    body.id = bodyId;
-    indices.forEach(i => body.appendChild(makeDistrictRow(i)));
-
-    header.addEventListener('click', (e) => {
-      if (e.target.tagName === 'INPUT') return;
-      header.classList.toggle('collapsed');
-      body.classList.toggle('collapsed');
-    });
-
-    header.querySelector(`#${allId}`).addEventListener('change', e => {
-      body.querySelectorAll('input').forEach(x => x.checked = e.target.checked);
-      indices.forEach(i => setLayers(bezirkLayerIds(i), e.target.checked));
-    });
-
-    wrapper.appendChild(header);
-    wrapper.appendChild(body);
-    container.appendChild(wrapper);
+    container.appendChild(row);
   });
-
   document.getElementById('all-bezirke-1').addEventListener('change', e => {
     document.querySelectorAll('#sec-bezirke-1 input').forEach(x => x.checked = e.target.checked);
     districts.forEach((_, i) => { if (i < 18) setLayers(bezirkLayerIds(i), e.target.checked); });
