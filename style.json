@@ -7556,57 +7556,34 @@
       }
     },
     {
-
-  "id": "wahllokal-label-001",
-
-  "type": "symbol",
-
-  "source": "wahlbezirke",
-
-  "source-layer": "001 Hamdans Restaurant",
-
-  "minzoom": 9,
-
-  "layout": {
-
-    "text-field": "Hamdans Restaurant",
-
-    "text-size": [
-
-      "interpolate",
-
-      ["linear"],
-
-      ["zoom"],
-
-      9, 10,
-
-      14, 13,
-
-      18, 16
-
-    ],
-
-    "text-offset": [0, 1.5],
-
-    "text-anchor": "top",
-
-    "text-allow-overlap": true
-
-  },
-
-  "paint": {
-
-    "text-color": "#222222",
-
-    "text-halo-color": "#ffffff",
-
-    "text-halo-width": 2,
-
-    "text-halo-blur": 0.5
-
-  }
-},
+      "id": "wahllokal-label-001",
+      "type": "symbol",
+      "source": "wahlbezirke",
+      "source-layer": "001 Hamdans Restaurant",
+      "minzoom": 9,
+      "layout":
+      {
+        "text-field": "Hamdans Restaurant",
+        "text-size": [
+          "interpolate",
+          ["linear"],
+          ["zoom"],
+          9, 10,
+          14, 13,
+          18, 16
+        ],
+        "text-offset": [0, 1.5],
+        "text-anchor": "top",
+        "text-allow-overlap": true
+      },
+      "paint":
+      {
+        "text-color": "#222222",
+        "text-halo-color": "#ffffff",
+        "text-halo-width": 2,
+        "text-halo-blur": 0.5
+      }
+    },
     {
       "id": "wahllokal-002",
       "type": "circle",
@@ -7633,6 +7610,35 @@
         "circle-stroke-color": "#ffffff",
         "circle-stroke-width": 2,
         "circle-opacity": 0.95
+      }
+    },
+    {
+      "id": "wahllokal-label-002",
+      "type": "symbol",
+      "source": "wahlbezirke",
+      "source-layer": "002-004 Grundschule Uphusen",
+      "minzoom": 9,
+      "layout":
+      {
+        "text-field": "Grundschule Uphusen",
+        "text-size": [
+          "interpolate",
+          ["linear"],
+          ["zoom"],
+          9, 10,
+          14, 13,
+          18, 16
+        ],
+        "text-offset": [0, 1.5],
+        "text-anchor": "top",
+        "text-allow-overlap": true
+      },
+      "paint":
+      {
+        "text-color": "#222222",
+        "text-halo-color": "#ffffff",
+        "text-halo-width": 2,
+        "text-halo-blur": 0.5
       }
     },
     {
@@ -7664,6 +7670,35 @@
       }
     },
     {
+      "id": "wahllokal-label-003",
+      "type": "symbol",
+      "source": "wahlbezirke",
+      "source-layer": "005-007 Grundschule Bierden",
+      "minzoom": 9,
+      "layout":
+      {
+        "text-field": "Grundschule Bierden",
+        "text-size": [
+          "interpolate",
+          ["linear"],
+          ["zoom"],
+          9, 10,
+          14, 13,
+          18, 16
+        ],
+        "text-offset": [0, 1.5],
+        "text-anchor": "top",
+        "text-allow-overlap": true
+      },
+      "paint":
+      {
+        "text-color": "#222222",
+        "text-halo-color": "#ffffff",
+        "text-halo-width": 2,
+        "text-halo-blur": 0.5
+      }
+    },
+    {
       "id": "wahllokal-004",
       "type": "circle",
       "source": "wahlbezirke",
@@ -7689,6 +7724,35 @@
         "circle-stroke-color": "#ffffff",
         "circle-stroke-width": 2,
         "circle-opacity": 0.95
+      }
+    },
+    {
+      "id": "wahllokal-label-004",
+      "type": "symbol",
+      "source": "wahlbezirke",
+      "source-layer": "008-011 Grundschule am Paulsberg",
+      "minzoom": 9,
+      "layout":
+      {
+        "text-field": "Grundschule am Paulsberg",
+        "text-size": [
+          "interpolate",
+          ["linear"],
+          ["zoom"],
+          9, 10,
+          14, 13,
+          18, 16
+        ],
+        "text-offset": [0, 1.5],
+        "text-anchor": "top",
+        "text-allow-overlap": true
+      },
+      "paint":
+      {
+        "text-color": "#222222",
+        "text-halo-color": "#ffffff",
+        "text-halo-width": 2,
+        "text-halo-blur": 0.5
       }
     },
     {
@@ -7720,6 +7784,35 @@
       }
     },
     {
+      "id": "wahllokal-label-005",
+      "type": "symbol",
+      "source": "wahlbezirke",
+      "source-layer": "012-014 GamMa",
+      "minzoom": 9,
+      "layout":
+      {
+        "text-field": "Gymnasium am Markt",
+        "text-size": [
+          "interpolate",
+          ["linear"],
+          ["zoom"],
+          9, 10,
+          14, 13,
+          18, 16
+        ],
+        "text-offset": [0, 1.5],
+        "text-anchor": "top",
+        "text-allow-overlap": true
+      },
+      "paint":
+      {
+        "text-color": "#222222",
+        "text-halo-color": "#ffffff",
+        "text-halo-width": 2,
+        "text-halo-blur": 0.5
+      }
+    },
+    {
       "id": "wahllokal-006",
       "type": "circle",
       "source": "wahlbezirke",
@@ -7745,6 +7838,35 @@
         "circle-stroke-color": "#ffffff",
         "circle-stroke-width": 2,
         "circle-opacity": 0.95
+      }
+    },
+    {
+      "id": "wahllokal-label-006",
+      "type": "symbol",
+      "source": "wahlbezirke",
+      "source-layer": "015-018 ALS",
+      "minzoom": 9,
+      "layout":
+      {
+        "text-field": "Astrid Lindgren-Schule",
+        "text-size": [
+          "interpolate",
+          ["linear"],
+          ["zoom"],
+          9, 10,
+          14, 13,
+          18, 16
+        ],
+        "text-offset": [0, 1.5],
+        "text-anchor": "top",
+        "text-allow-overlap": true
+      },
+      "paint":
+      {
+        "text-color": "#222222",
+        "text-halo-color": "#ffffff",
+        "text-halo-width": 2,
+        "text-halo-blur": 0.5
       }
     },
     {
@@ -7776,6 +7898,35 @@
       }
     },
     {
+      "id": "wahllokal-label-007",
+      "type": "symbol",
+      "source": "wahlbezirke",
+      "source-layer": "019-021 IGS Achim",
+      "minzoom": 9,
+      "layout":
+      {
+        "text-field": "IGS Achim",
+        "text-size": [
+          "interpolate",
+          ["linear"],
+          ["zoom"],
+          9, 10,
+          14, 13,
+          18, 16
+        ],
+        "text-offset": [0, 1.5],
+        "text-anchor": "top",
+        "text-allow-overlap": true
+      },
+      "paint":
+      {
+        "text-color": "#222222",
+        "text-halo-color": "#ffffff",
+        "text-halo-width": 2,
+        "text-halo-blur": 0.5
+      }
+    },
+    {
       "id": "wahllokal-008",
       "type": "circle",
       "source": "wahlbezirke",
@@ -7801,6 +7952,35 @@
         "circle-stroke-color": "#ffffff",
         "circle-stroke-width": 2,
         "circle-opacity": 0.95
+      }
+    },
+    {
+      "id": "wahllokal-label-008",
+      "type": "symbol",
+      "source": "wahlbezirke",
+      "source-layer": "022-025 Grundschule Uesen",
+      "minzoom": 9,
+      "layout":
+      {
+        "text-field": "Grundschule Uesen",
+        "text-size": [
+          "interpolate",
+          ["linear"],
+          ["zoom"],
+          9, 10,
+          14, 13,
+          18, 16
+        ],
+        "text-offset": [0, 1.5],
+        "text-anchor": "top",
+        "text-allow-overlap": true
+      },
+      "paint":
+      {
+        "text-color": "#222222",
+        "text-halo-color": "#ffffff",
+        "text-halo-width": 2,
+        "text-halo-blur": 0.5
       }
     },
     {
@@ -7832,6 +8012,35 @@
       }
     },
     {
+      "id": "wahllokal-label-009",
+      "type": "symbol",
+      "source": "wahlbezirke",
+      "source-layer": "026 Schützenhaus Achim",
+      "minzoom": 9,
+      "layout":
+      {
+        "text-field": "Schützenhaus Achim",
+        "text-size": [
+          "interpolate",
+          ["linear"],
+          ["zoom"],
+          9, 10,
+          14, 13,
+          18, 16
+        ],
+        "text-offset": [0, 1.5],
+        "text-anchor": "top",
+        "text-allow-overlap": true
+      },
+      "paint":
+      {
+        "text-color": "#222222",
+        "text-halo-color": "#ffffff",
+        "text-halo-width": 2,
+        "text-halo-blur": 0.5
+      }
+    },
+    {
       "id": "wahllokal-010",
       "type": "circle",
       "source": "wahlbezirke",
@@ -7857,6 +8066,35 @@
         "circle-stroke-color": "#ffffff",
         "circle-stroke-width": 2,
         "circle-opacity": 0.95
+      }
+    },
+    {
+      "id": "wahllokal-label-010",
+      "type": "symbol",
+      "source": "wahlbezirke",
+      "source-layer": "027 Schützenverein Embsen",
+      "minzoom": 9,
+      "layout":
+      {
+        "text-field": "Schützenverein Embsen",
+        "text-size": [
+          "interpolate",
+          ["linear"],
+          ["zoom"],
+          9, 10,
+          14, 13,
+          18, 16
+        ],
+        "text-offset": [0, 1.5],
+        "text-anchor": "top",
+        "text-allow-overlap": true
+      },
+      "paint":
+      {
+        "text-color": "#222222",
+        "text-halo-color": "#ffffff",
+        "text-halo-width": 2,
+        "text-halo-blur": 0.5
       }
     },
     {
@@ -7888,6 +8126,35 @@
       }
     },
     {
+      "id": "wahllokal-label-011",
+      "type": "symbol",
+      "source": "wahlbezirke",
+      "source-layer": "028-033 Grundschule Baden",
+      "minzoom": 9,
+      "layout":
+      {
+        "text-field": "Grundschule Baden",
+        "text-size": [
+          "interpolate",
+          ["linear"],
+          ["zoom"],
+          9, 10,
+          14, 13,
+          18, 16
+        ],
+        "text-offset": [0, 1.5],
+        "text-anchor": "top",
+        "text-allow-overlap": true
+      },
+      "paint":
+      {
+        "text-color": "#222222",
+        "text-halo-color": "#ffffff",
+        "text-halo-width": 2,
+        "text-halo-blur": 0.5
+      }
+    },
+    {
       "id": "wahllokal-012",
       "type": "circle",
       "source": "wahlbezirke",
@@ -7913,6 +8180,35 @@
         "circle-stroke-color": "#ffffff",
         "circle-stroke-width": 2,
         "circle-opacity": 0.95
+      }
+    },
+    {
+      "id": "wahllokal-label-012",
+      "type": "symbol",
+      "source": "wahlbezirke",
+      "source-layer": "034 Wachtelkönig",
+      "minzoom": 9,
+      "layout":
+      {
+        "text-field": "Wachtelkönig",
+        "text-size": [
+          "interpolate",
+          ["linear"],
+          ["zoom"],
+          9, 10,
+          14, 13,
+          18, 16
+        ],
+        "text-offset": [0, 1.5],
+        "text-anchor": "top",
+        "text-allow-overlap": true
+      },
+      "paint":
+      {
+        "text-color": "#222222",
+        "text-halo-color": "#ffffff",
+        "text-halo-width": 2,
+        "text-halo-blur": 0.5
       }
     }
   ]
