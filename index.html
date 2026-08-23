@@ -258,17 +258,13 @@ function setupPanel() {
     const indices = [];
     for (let n = from; n <= to; n++) indices.push(n - 1);
 
-    if (indices.length === 1) {
-      // Einzelbezirk: keine eigene Gruppe, direkt als Zeile einfügen
-      container.appendChild(makeDistrictRow(indices[0]));
-      return;
-    }
-
-    // Bereich mit mehreren Bezirken: eigene ein-/ausklappbare Untergruppe
+    // Jede Gruppe (auch Einzelbezirke) als eigene ein-/ausklappbare Untergruppe
     subgroupCounter++;
     const bodyId = `sub-bezirke-${subgroupCounter}`;
     const allId = `all-sub-bezirke-${subgroupCounter}`;
-    const label = `${String(from).padStart(3,'0')}\u2013${String(to).padStart(3,'0')}`;
+    const label = (from === to)
+      ? String(from).padStart(3,'0')
+      : `${String(from).padStart(3,'0')}\u2013${String(to).padStart(3,'0')}`;
 
     const wrapper = document.createElement('div');
     wrapper.className = 'subgroup';
