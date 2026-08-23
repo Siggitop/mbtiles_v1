@@ -371,6 +371,37 @@ function setupPanel() {
   });
 }
 
+// Grenz-Layer (Stadtgrenze, Gemarkungen, Grenze Ost-West) - sollen immer
+// ganz oben liegen, auch über der obersten Basemap-Overlay-Ebene
+const boundaryLayerIds = ['stadtgrenze-glow', 'stadtgrenze-line', 'gemarkungen-line', 'grenze-ost-west-line'];
+const lokalLayerIds = 
+[
+  'wahllokal-001',
+  'wahllokal-label-001',
+  'wahllokal-002',
+  'wahllokal-label-002',
+  'wahllokal-003',
+  'wahllokal-label-003',
+  'wahllokal-004',
+  'wahllokal-label-004',
+  'wahllokal-005',
+  'wahllokal-label-005',
+  'wahllokal-006',
+  'wahllokal-label-006',
+  'wahllokal-007',
+  'wahllokal-label-007',
+  'wahllokal-008',
+  'wahllokal-label-008',
+  'wahllokal-009',
+  'wahllokal-label-009',
+  'wahllokal-010',
+  'wahllokal-label-010',
+  'wahllokal-011',
+  'wahllokal-label-011',
+  'wahllokal-012',
+  'wahllokal-label-012'
+];
+
 // Klont die angegebenen Basemap-Layer aus dem aktuellen Style und legt sie
 // als neue, oberste Ebene an (über den Wahlbezirken), aber nur sichtbar für
 // die in overlayLayerIds gelisteten Layer.
@@ -388,6 +419,16 @@ function addTopBasemapOverlay() {
         map.addLayer(clone); // ohne beforeId -> landet ganz oben
       }
     });
+
+  // Grenzen wieder über die soeben hinzugefügte oberste Basemap-Ebene holen
+  boundaryLayerIds.forEach(id => {
+    if (map.getLayer(id)) map.moveLayer(id); // ohne beforeId -> ganz nach oben
+  });
+  
+  // Wahllokale wieder über die soeben hinzugefügte oberste Basemap-Ebene holen
+  lokalLayerIds.forEach(id => {
+    if (map.getLayer(id)) map.moveLayer(id); // ohne beforeId -> ganz nach oben
+  });
 }
 
 map.on('load', () => {
