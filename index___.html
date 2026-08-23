@@ -61,18 +61,6 @@ body { font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-se
 .district:active, .toplevel:active { background:rgba(0,0,0,.05); }
 .district input, .toplevel input { margin:0; width:19px; height:19px; flex:none; }
 
-.subgroup { margin-left:8px; }
-.subgroup-header {
-  display:flex; align-items:center; justify-content:space-between;
-  padding:6px 4px; cursor:pointer; user-select:none;
-  font-size:14px; font-weight:500;
-}
-.subgroup-header .chevron { transition:transform .15s ease; font-size:11px; color:#888; }
-.subgroup-header.collapsed .chevron { transform:rotate(-90deg); }
-.subgroup-body { display:block; margin-left:14px; }
-.subgroup-body.collapsed { display:none; }
-.subgroup-header .toplevel { font-weight:500; padding:0; }
-
 #loading {
   position:absolute; z-index:10; left:50%; top:50%;
   transform:translate(-50%,-50%); background:white;
@@ -173,29 +161,6 @@ const MAPTILER_STYLE = 'streets-v2';
 const districts = ["Wahlbezirk 001", "Wahlbezirk 002", "Wahlbezirk 003", "Wahlbezirk 004", "Wahlbezirk 005", "Wahlbezirk 006", "Wahlbezirk 007", "Wahlbezirk 008", "Wahlbezirk 009", "Wahlbezirk 010", "Wahlbezirk 011", "Wahlbezirk 012", "Wahlbezirk 013", "Wahlbezirk 014", "Wahlbezirk 015", "Wahlbezirk 016", "Wahlbezirk 017", "Wahlbezirk 018", "Wahlbezirk 019", "Wahlbezirk 020", "Wahlbezirk 021", "Wahlbezirk 022", "Wahlbezirk 023", "Wahlbezirk 024", "Wahlbezirk 025", "Wahlbezirk 026", "Wahlbezirk 027", "Wahlbezirk 028", "Wahlbezirk 029", "Wahlbezirk 030", "Wahlbezirk 031", "Wahlbezirk 032", "Wahlbezirk 033", "Wahlbezirk 034"];
 const wahllokale = ["Hamdans Restaurant", "Grundschule Uphusen", "Grundschule Bierden", "Grundschule am Paulsberg", "GamMa", "ALS", "IGS Achim", "Grundschule Uesen", "Schützenhaus Achim", "Schützenverein Embsen", "Grundschule Baden", "Wachtelkönig"];
 
-// Basemap-Layer, die in der untersten Ebene ausgeblendet und als eigene,
-// oberste Ebene über den Wahlbezirken wieder eingeblendet werden
-const overlayLayerIds = [
-  "River",
-  "Minor road outline",
-  "Major road outline",
-  "Highway outline",
-  "Road under construction",
-  "Minor road",
-  "Major road",
-  "Highway",
-  "Major rail",
-  "Major rail hatching",
-  "Minor rail",
-  "Minor rail hatching",
-  "Building",
-  "Lake labels",
-  "Oneway",
-  "Road labels",
-  "Place labels",
-  "Town labels"
-];
-
 const bounds = "8.91611,52.9803,9.14296,53.0566";
 const b = bounds.split(',').map(Number);
 const initialBounds = (b.length === 4 && b.every(Number.isFinite))
@@ -251,73 +216,22 @@ function setLayers(ids, visible) {
 }
 
 function setupPanel() {
-  // Wahlbezirke, aufgeteilt in zwei Gruppen (001-018 / 019-034),
-  // innerhalb jeweils in Bereichsgruppen unterteilt; Einzelbezirke ohne eigene Gruppe
+  // Wahlbezirke, aufgeteilt in zwei Gruppen (001-018 / 019-034)
   const bezirkeContainer1 = document.getElementById('sec-bezirke-1');
   const bezirkeContainer2 = document.getElementById('sec-bezirke-2');
   function bezirkLayerIds(i) {
     const idx = String(i+1).padStart(3,'0');
     return [`fill-${idx}`, `line-${idx}`, ...[1,2,3,4].map(g => `glow-${idx}-${g}`)];
   }
-
-  // Bereichsgruppen: [von, bis] als 1-basierte Wahlbezirk-Nummern
-  const groupRanges = [
-    [1,1], [2,4], [5,7], [8,11], [12,14], [15,18],
-    [19,21], [22,25], [26,26], [27,27], [28,33], [34,34]
-  ];
-
-  function makeDistrictRow(i) {
+  districts.forEach((name, i) => {
+    const container = i < 18 ? bezirkeContainer1 : bezirkeContainer2;
     const layerIds = bezirkLayerIds(i);
     const row = document.createElement('label');
     row.className = 'district';
-    row.innerHTML = `<input type="checkbox" checked> ${districts[i]}`;
+    row.innerHTML = `<input type="checkbox" checked> ${name}`;
     row.querySelector('input').addEventListener('change', e => setLayers(layerIds, e.target.checked));
-    return row;
-  }
-
-  let subgroupCounter = 0;
-  groupRanges.forEach(([from, to]) => {
-    const container = (from <= 18) ? bezirkeContainer1 : bezirkeContainer2;
-    const indices = [];
-    for (let n = from; n <= to; n++) indices.push(n - 1);
-
-    // Jede Gruppe (auch Einzelbezirke) als eigene ein-/ausklappbare Untergruppe
-    subgroupCounter++;
-    const bodyId = `sub-bezirke-${subgroupCounter}`;
-    const allId = `all-sub-bezirke-${subgroupCounter}`;
-    const label = (from === to)
-      ? String(from).padStart(3,'0')
-      : `${String(from).padStart(3,'0')}\u2013${String(to).padStart(3,'0')}`;
-
-    const wrapper = document.createElement('div');
-    wrapper.className = 'subgroup';
-
-    const header = document.createElement('div');
-    header.className = 'subgroup-header collapsed';
-    header.dataset.target = bodyId;
-    header.innerHTML = `<label class="toplevel"><input id="${allId}" type="checkbox" checked> ${label}</label><span class="chevron">\u25be</span>`;
-
-    const body = document.createElement('div');
-    body.className = 'subgroup-body collapsed';
-    body.id = bodyId;
-    indices.forEach(i => body.appendChild(makeDistrictRow(i)));
-
-    header.addEventListener('click', (e) => {
-      if (e.target.tagName === 'INPUT') return;
-      header.classList.toggle('collapsed');
-      body.classList.toggle('collapsed');
-    });
-
-    header.querySelector(`#${allId}`).addEventListener('change', e => {
-      body.querySelectorAll('input').forEach(x => x.checked = e.target.checked);
-      indices.forEach(i => setLayers(bezirkLayerIds(i), e.target.checked));
-    });
-
-    wrapper.appendChild(header);
-    wrapper.appendChild(body);
-    container.appendChild(wrapper);
+    container.appendChild(row);
   });
-
   document.getElementById('all-bezirke-1').addEventListener('change', e => {
     document.querySelectorAll('#sec-bezirke-1 input').forEach(x => x.checked = e.target.checked);
     districts.forEach((_, i) => { if (i < 18) setLayers(bezirkLayerIds(i), e.target.checked); });
@@ -371,50 +285,12 @@ function setupPanel() {
   });
 }
 
-// Grenz-Layer (Stadtgrenze, Gemarkungen, Grenze Ost-West) - sollen immer
-// ganz oben liegen, auch über der obersten Basemap-Overlay-Ebene
-const boundaryLayerIds = ['stadtgrenze-glow', 'stadtgrenze-line', 'gemarkungen-line', 'grenze-ost-west-line'];
-
-// Klont die angegebenen Basemap-Layer aus dem aktuellen Style und legt sie
-// als neue, oberste Ebene an (über den Wahlbezirken), aber nur sichtbar für
-// die in overlayLayerIds gelisteten Layer.
-function addTopBasemapOverlay() {
-  const style = map.getStyle();
-  const overlaySet = new Set(overlayLayerIds);
-  style.layers
-    .filter(l => overlaySet.has(l.id))
-    .forEach(orig => {
-      const clone = JSON.parse(JSON.stringify(orig));
-      clone.id = 'top-' + orig.id;
-      clone.layout = clone.layout || {};
-      clone.layout.visibility = 'visible';
-      if (!map.getLayer(clone.id)) {
-        map.addLayer(clone); // ohne beforeId -> landet ganz oben
-      }
-    });
-
-  // Grenzen wieder über die soeben hinzugefügte oberste Basemap-Ebene holen
-  boundaryLayerIds.forEach(id => {
-    if (map.getLayer(id)) map.moveLayer(id); // ohne beforeId -> ganz nach oben
-  });
-}
-
 map.on('load', () => {
   // Gezielt nur die Stadtgrenze der MapTiler-Basiskarte ausblenden
   const streetsV2BoundaryLayerId = 'Other border';
   if (map.getLayer(streetsV2BoundaryLayerId)) {
     map.setLayoutProperty(streetsV2BoundaryLayerId, 'visibility', 'none');
   }
-
-  // In der untersten Basiskarte ausblenden – wird weiter unten als eigene,
-  // oberste Ebene über den Wahlbezirken wieder eingeblendet
-  overlayLayerIds.forEach(id => {
-    if (map.getLayer(id)) {
-      map.setLayoutProperty(id, 'visibility', 'none');
-    } else {
-      console.warn('Basiskarten-Layer nicht gefunden:', id);
-    }
-  });
 
   fetch('style.json')
     .then(r => r.json())
@@ -423,7 +299,6 @@ map.on('load', () => {
       own.layers.forEach(layer => map.addLayer(layer));
       document.getElementById('loading').remove();
       setupPanel();
-      addTopBasemapOverlay();
     })
     .catch(err => {
       console.error('Konnte eigene style.json nicht laden:', err);
