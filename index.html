@@ -244,7 +244,7 @@ const map = new maplibregl.Map({
   bounds:initialBounds,
   fitBoundsOptions:{padding:45},
   attributionControl:true,
-  touchPitch:false
+  touchPitch:true
 });
 map.addControl(new maplibregl.NavigationControl({showCompass:false}), 'top-right');
 map.addControl(new maplibregl.ScaleControl({maxWidth:120, unit:'metric'}), 'bottom-right');
