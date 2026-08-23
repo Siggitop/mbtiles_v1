@@ -7560,7 +7560,7 @@
       "type": "symbol",
       "source": "wahlbezirke",
       "source-layer": "001 Hamdans Restaurant",
-      "minzoom": 9,
+      "minzoom": 12,
       "layout":
       {
         "text-field": "Hamdans Restaurant",
@@ -7617,7 +7617,7 @@
       "type": "symbol",
       "source": "wahlbezirke",
       "source-layer": "002-004 Grundschule Uphusen",
-      "minzoom": 9,
+      "minzoom": 12,
       "layout":
       {
         "text-field": "Grundschule Uphusen",
@@ -7674,7 +7674,7 @@
       "type": "symbol",
       "source": "wahlbezirke",
       "source-layer": "005-007 Grundschule Bierden",
-      "minzoom": 9,
+      "minzoom": 12,
       "layout":
       {
         "text-field": "Grundschule Bierden",
@@ -7731,7 +7731,7 @@
       "type": "symbol",
       "source": "wahlbezirke",
       "source-layer": "008-011 Grundschule am Paulsberg",
-      "minzoom": 9,
+      "minzoom": 12,
       "layout":
       {
         "text-field": "Grundschule am Paulsberg",
@@ -7788,7 +7788,7 @@
       "type": "symbol",
       "source": "wahlbezirke",
       "source-layer": "012-014 GamMa",
-      "minzoom": 9,
+      "minzoom": 12,
       "layout":
       {
         "text-field": "Gymnasium am Markt",
@@ -7845,7 +7845,7 @@
       "type": "symbol",
       "source": "wahlbezirke",
       "source-layer": "015-018 ALS",
-      "minzoom": 9,
+      "minzoom": 12,
       "layout":
       {
         "text-field": "Astrid Lindgren-Schule",
@@ -7902,7 +7902,7 @@
       "type": "symbol",
       "source": "wahlbezirke",
       "source-layer": "019-021 IGS Achim",
-      "minzoom": 9,
+      "minzoom": 12,
       "layout":
       {
         "text-field": "IGS Achim",
@@ -7959,7 +7959,7 @@
       "type": "symbol",
       "source": "wahlbezirke",
       "source-layer": "022-025 Grundschule Uesen",
-      "minzoom": 9,
+      "minzoom": 12,
       "layout":
       {
         "text-field": "Grundschule Uesen",
@@ -8016,7 +8016,7 @@
       "type": "symbol",
       "source": "wahlbezirke",
       "source-layer": "026 Schützenhaus Achim",
-      "minzoom": 9,
+      "minzoom": 12,
       "layout":
       {
         "text-field": "Schützenhaus Achim",
@@ -8073,7 +8073,7 @@
       "type": "symbol",
       "source": "wahlbezirke",
       "source-layer": "027 Schützenverein Embsen",
-      "minzoom": 9,
+      "minzoom": 12,
       "layout":
       {
         "text-field": "Schützenverein Embsen",
@@ -8130,7 +8130,7 @@
       "type": "symbol",
       "source": "wahlbezirke",
       "source-layer": "028-033 Grundschule Baden",
-      "minzoom": 9,
+      "minzoom": 12,
       "layout":
       {
         "text-field": "Grundschule Baden",
@@ -8187,7 +8187,7 @@
       "type": "symbol",
       "source": "wahlbezirke",
       "source-layer": "034 Wachtelkönig",
-      "minzoom": 9,
+      "minzoom": 12,
       "layout":
       {
         "text-field": "Wachtelkönig",
