@@ -1,0 +1,312 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#ffffff">
+<title>Wahlbezirke Achim</title>
+<link href="https://unpkg.com/maplibre-gl@5.13.0/dist/maplibre-gl.css" rel="stylesheet">
+<style>
+* { box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+html,body {
+  margin:0; width:100%;
+  height:100vh; height:100dvh;
+  overscroll-behavior:none;
+}
+#map { position:absolute; inset:0; width:100%; height:100%; }
+body { font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; }
+
+#panelToggle {
+  position:absolute; z-index:6;
+  top:calc(12px + env(safe-area-inset-top));
+  left:calc(12px + env(safe-area-inset-left));
+  width:44px; height:44px; border:none; border-radius:10px;
+  background:rgba(255,255,255,.96); box-shadow:0 4px 18px rgba(0,0,0,.18);
+  font-size:20px; line-height:1; cursor:pointer;
+  display:flex; align-items:center; justify-content:center;
+}
+#panelToggle:active { background:rgba(240,240,240,.98); }
+
+#panel {
+  position:absolute; z-index:5;
+  top:calc(64px + env(safe-area-inset-top));
+  left:calc(12px + env(safe-area-inset-left));
+  width:300px; max-height:calc(100% - 88px);
+  overflow:auto; -webkit-overflow-scrolling:touch;
+  background:rgba(255,255,255,.97); border-radius:12px;
+  box-shadow:0 4px 18px rgba(0,0,0,.18); padding:14px;
+  transition:transform .2s ease, opacity .2s ease;
+}
+#panel.hidden { transform:translateY(-8px); opacity:0; pointer-events:none; }
+
+#panel h2 { margin:0 0 8px; font-size:18px; }
+
+.section { margin-top:4px; }
+.section-header {
+  display:flex; align-items:center; justify-content:space-between;
+  padding:8px 4px; cursor:pointer; user-select:none;
+  font-weight:600; font-size:14px; border-top:1px solid #eee;
+}
+.section-header .chevron { transition:transform .15s ease; font-size:12px; color:#888; }
+.section-header.collapsed .chevron { transform:rotate(-90deg); }
+.section-body { display:block; }
+.section-body.collapsed { display:none; }
+
+.district, .toplevel {
+  display:flex; align-items:center; gap:10px;
+  padding:8px 4px; font-size:14px;
+  min-height:40px; border-radius:8px;
+}
+.toplevel { font-weight:600; }
+.district:active, .toplevel:active { background:rgba(0,0,0,.05); }
+.district input, .toplevel input { margin:0; width:19px; height:19px; flex:none; }
+
+#loading {
+  position:absolute; z-index:10; left:50%; top:50%;
+  transform:translate(-50%,-50%); background:white;
+  padding:12px 16px; border-radius:10px;
+  box-shadow:0 4px 18px rgba(0,0,0,.2);
+  font-size:14px;
+}
+
+.maplibregl-popup { max-width:min(320px, calc(100vw - 32px)) !important; }
+.maplibregl-popup-content {
+  max-width:100%; padding:12px;
+  max-height:60vh; overflow:auto;
+}
+.attr { border-collapse:collapse; width:100%; font-size:12px; }
+.attr td { padding:5px 4px; border-bottom:1px solid #eee; vertical-align:top; }
+.attr td:first-child { font-weight:600; width:42%; }
+
+.maplibregl-ctrl-top-right {
+  top:calc(0px + env(safe-area-inset-top));
+  right:calc(0px + env(safe-area-inset-right));
+}
+.maplibregl-ctrl-bottom-right {
+  bottom:calc(0px + env(safe-area-inset-bottom));
+  right:calc(0px + env(safe-area-inset-right));
+}
+
+@media (max-width:680px) {
+  #panel {
+    top:auto; left:0; right:0; bottom:0;
+    width:100%; max-height:55vh;
+    border-radius:16px 16px 0 0;
+    padding:12px 16px calc(14px + env(safe-area-inset-bottom));
+    transform:translateY(0);
+  }
+  #panel.hidden { transform:translateY(100%); opacity:1; }
+  #panel h2 { font-size:16px; }
+  .maplibregl-ctrl-group { transform:scale(.92); transform-origin:top right; }
+}
+</style>
+</head>
+<body>
+<div id="map"></div>
+<div id="loading">Karte wird geladen …</div>
+<button id="panelToggle" type="button" aria-label="Layer ein-/ausblenden" aria-expanded="false">☰</button>
+<div id="panel" class="hidden">
+  <h2>Achim – Wahlbezirke</h2>
+
+  <div class="section">
+    <div class="section-header collapsed" data-target="sec-bezirke-1">
+      <label class="toplevel" style="padding:0;">
+        <input id="all-bezirke-1" type="checkbox" checked> Achim West
+      </label>
+      <span class="chevron">▾</span>
+    </div>
+    <div class="section-body collapsed" id="sec-bezirke-1"></div>
+  </div>
+
+  <div class="section">
+    <div class="section-header collapsed" data-target="sec-bezirke-2">
+      <label class="toplevel" style="padding:0;">
+        <input id="all-bezirke-2" type="checkbox" checked> Achim Ost
+      </label>
+      <span class="chevron">▾</span>
+    </div>
+    <div class="section-body collapsed" id="sec-bezirke-2"></div>
+  </div>
+
+  <div class="section">
+    <div class="section-header collapsed" data-target="sec-lokale">
+      <label class="toplevel" style="padding:0;">
+        <input id="all-lokale" type="checkbox" checked> Wahllokale
+      </label>
+      <span class="chevron">▾</span>
+    </div>
+    <div class="section-body collapsed" id="sec-lokale"></div>
+  </div>
+
+  <div class="section">
+    <div class="section-header collapsed" data-target="sec-grenzen">
+      <label class="toplevel" style="padding:0;">
+        <input id="all-grenzen" type="checkbox" checked> Grenzen
+      </label>
+      <span class="chevron">▾</span>
+    </div>
+    <div class="section-body collapsed" id="sec-grenzen">
+      <label class="district"><input type="checkbox" checked data-layers="stadtgrenze-glow,stadtgrenze-line"> Stadtgrenze</label>
+      <label class="district"><input type="checkbox" checked data-layers="gemarkungen-line"> Gemarkungen</label>
+      <label class="district"><input type="checkbox" checked data-layers="grenze-ost-west-line"> Grenze Ost-West</label>
+    </div>
+  </div>
+</div>
+
+<script src="https://unpkg.com/maplibre-gl@5.13.0/dist/maplibre-gl.js"></script>
+<script>
+const MAPTILER_KEY = 'oltvWv3Xrm4wuk400gjr';
+const MAPTILER_STYLE = 'streets-v2';
+
+const districts = ["Wahlbezirk 001", "Wahlbezirk 002", "Wahlbezirk 003", "Wahlbezirk 004", "Wahlbezirk 005", "Wahlbezirk 006", "Wahlbezirk 007", "Wahlbezirk 008", "Wahlbezirk 009", "Wahlbezirk 010", "Wahlbezirk 011", "Wahlbezirk 012", "Wahlbezirk 013", "Wahlbezirk 014", "Wahlbezirk 015", "Wahlbezirk 016", "Wahlbezirk 017", "Wahlbezirk 018", "Wahlbezirk 019", "Wahlbezirk 020", "Wahlbezirk 021", "Wahlbezirk 022", "Wahlbezirk 023", "Wahlbezirk 024", "Wahlbezirk 025", "Wahlbezirk 026", "Wahlbezirk 027", "Wahlbezirk 028", "Wahlbezirk 029", "Wahlbezirk 030", "Wahlbezirk 031", "Wahlbezirk 032", "Wahlbezirk 033", "Wahlbezirk 034"];
+const wahllokale = ["Hamdans Restaurant", "Grundschule Uphusen", "Grundschule Bierden", "Grundschule am Paulsberg", "GamMa", "ALS", "IGS Achim", "Grundschule Uesen", "Schützenhaus Achim", "Schützenverein Embsen", "Grundschule Baden", "Wachtelkönig"];
+
+const bounds = "8.91611,52.9803,9.14296,53.0566";
+const b = bounds.split(',').map(Number);
+const initialBounds = (b.length === 4 && b.every(Number.isFinite))
+  ? [[b[0], b[1]], [b[2], b[3]]]
+  : [[8.90,52.97],[9.16,53.07]];
+
+const map = new maplibregl.Map({
+  container:'map',
+  style:`https://api.maptiler.com/maps/${MAPTILER_STYLE}/style.json?key=${MAPTILER_KEY}`,
+  bounds:initialBounds,
+  fitBoundsOptions:{padding:45},
+  attributionControl:true,
+  touchPitch:false
+});
+map.addControl(new maplibregl.NavigationControl({showCompass:false}), 'top-right');
+map.addControl(new maplibregl.ScaleControl({maxWidth:120, unit:'metric'}), 'bottom-right');
+
+// Panel-Toggle
+const panel = document.getElementById('panel');
+const panelToggle = document.getElementById('panelToggle');
+function setPanelOpen(open) {
+  panel.classList.toggle('hidden', !open);
+  panelToggle.setAttribute('aria-expanded', String(open));
+}
+panelToggle.addEventListener('click', () => setPanelOpen(panel.classList.contains('hidden')));
+setPanelOpen(window.innerWidth > 680);
+
+// Abschnitte ein-/ausklappbar (spart Platz auf kleinen Screens)
+document.querySelectorAll('.section-header').forEach(header => {
+  header.addEventListener('click', (e) => {
+    if (e.target.tagName === 'INPUT') return;
+    const body = document.getElementById(header.dataset.target);
+    header.classList.toggle('collapsed');
+    body.classList.toggle('collapsed');
+  });
+});
+
+function fillPopup(feature) {
+  const props = feature.properties || {};
+  const keys = Object.keys(props).filter(k => props[k] !== null && props[k] !== '');
+  keys.sort((a,b) => a.localeCompare(b));
+  const rows = keys.slice(0,40).map(k =>
+    `<tr><td>${k}</td><td>${String(props[k])}</td></tr>`
+  ).join('');
+  return `<b>${feature.layer['source-layer'] || 'Objekt'}</b>` +
+         (rows ? `<table class="attr">${rows}</table>` : '<p>Keine Attribute vorhanden.</p>');
+}
+
+function setLayers(ids, visible) {
+  ids.forEach(id => {
+    if (map.getLayer(id)) map.setLayoutProperty(id, 'visibility', visible ? 'visible' : 'none');
+  });
+}
+
+function setupPanel() {
+  // Wahlbezirke, aufgeteilt in zwei Gruppen (001-018 / 019-034)
+  const bezirkeContainer1 = document.getElementById('sec-bezirke-1');
+  const bezirkeContainer2 = document.getElementById('sec-bezirke-2');
+  function bezirkLayerIds(i) {
+    const idx = String(i+1).padStart(3,'0');
+    return [`fill-${idx}`, `line-${idx}`, ...[1,2,3,4].map(g => `glow-${idx}-${g}`)];
+  }
+  districts.forEach((name, i) => {
+    const container = i < 18 ? bezirkeContainer1 : bezirkeContainer2;
+    const layerIds = bezirkLayerIds(i);
+    const row = document.createElement('label');
+    row.className = 'district';
+    row.innerHTML = `<input type="checkbox" checked> ${name}`;
+    row.querySelector('input').addEventListener('change', e => setLayers(layerIds, e.target.checked));
+    container.appendChild(row);
+  });
+  document.getElementById('all-bezirke-1').addEventListener('change', e => {
+    document.querySelectorAll('#sec-bezirke-1 input').forEach(x => x.checked = e.target.checked);
+    districts.forEach((_, i) => { if (i < 18) setLayers(bezirkLayerIds(i), e.target.checked); });
+  });
+  document.getElementById('all-bezirke-2').addEventListener('change', e => {
+    document.querySelectorAll('#sec-bezirke-2 input').forEach(x => x.checked = e.target.checked);
+    districts.forEach((_, i) => { if (i >= 18) setLayers(bezirkLayerIds(i), e.target.checked); });
+  });
+
+  // Wahllokale
+  const lokaleContainer = document.getElementById('sec-lokale');
+  wahllokale.forEach((name, i) => {
+    const wid = String(i+1).padStart(3,'0');
+    const layerIds = [`wahllokal-${wid}`];
+    const row = document.createElement('label');
+    row.className = 'district';
+    row.innerHTML = `<input type="checkbox" checked> ${name}`;
+    row.querySelector('input').addEventListener('change', e => setLayers(layerIds, e.target.checked));
+    lokaleContainer.appendChild(row);
+  });
+  document.getElementById('all-lokale').addEventListener('change', e => {
+    document.querySelectorAll('#sec-lokale input').forEach(x => x.checked = e.target.checked);
+    wahllokale.forEach((_, i) => {
+      const wid = String(i+1).padStart(3,'0');
+      setLayers([`wahllokal-${wid}`], e.target.checked);
+    });
+  });
+
+  // Grenzen (Stadtgrenze, Gemarkungen, Grenze Ost-West)
+  document.querySelectorAll('#sec-grenzen input[data-layers]').forEach(input => {
+    input.addEventListener('change', e => {
+      setLayers(e.target.dataset.layers.split(','), e.target.checked);
+    });
+  });
+  document.getElementById('all-grenzen').addEventListener('change', e => {
+    document.querySelectorAll('#sec-grenzen input[data-layers]').forEach(x => {
+      x.checked = e.target.checked;
+      setLayers(x.dataset.layers.split(','), e.target.checked);
+    });
+  });
+
+  // Klick/Tap auf ein gerendertes Vektor-Feature
+  map.on('click', (e) => {
+    const features = map.queryRenderedFeatures(e.point);
+    if (!features.length) return;
+    new maplibregl.Popup({maxWidth:'none'}).setLngLat(e.lngLat).setHTML(fillPopup(features[0])).addTo(map);
+  });
+  map.on('mousemove', e => {
+    const features = map.queryRenderedFeatures(e.point);
+    map.getCanvas().style.cursor = features.length ? 'pointer' : '';
+  });
+}
+
+map.on('load', () => {
+  // Gezielt nur die Stadtgrenze der MapTiler-Basiskarte ausblenden
+  const streetsV2BoundaryLayerId = 'Other border';
+  if (map.getLayer(streetsV2BoundaryLayerId)) {
+    map.setLayoutProperty(streetsV2BoundaryLayerId, 'visibility', 'none');
+  }
+
+  fetch('style.json')
+    .then(r => r.json())
+    .then(own => {
+      map.addSource('wahlbezirke', own.sources.wahlbezirke);
+      own.layers.forEach(layer => map.addLayer(layer));
+      document.getElementById('loading').remove();
+      setupPanel();
+    })
+    .catch(err => {
+      console.error('Konnte eigene style.json nicht laden:', err);
+      document.getElementById('loading').textContent = 'Fehler beim Laden der Wahlbezirke.';
+    });
+});
+
+map.on('error', e => console.error(e));
+</script>
+</body>
+</html>
