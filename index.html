@@ -173,6 +173,29 @@ const MAPTILER_STYLE = 'streets-v2';
 const districts = ["Wahlbezirk 001", "Wahlbezirk 002", "Wahlbezirk 003", "Wahlbezirk 004", "Wahlbezirk 005", "Wahlbezirk 006", "Wahlbezirk 007", "Wahlbezirk 008", "Wahlbezirk 009", "Wahlbezirk 010", "Wahlbezirk 011", "Wahlbezirk 012", "Wahlbezirk 013", "Wahlbezirk 014", "Wahlbezirk 015", "Wahlbezirk 016", "Wahlbezirk 017", "Wahlbezirk 018", "Wahlbezirk 019", "Wahlbezirk 020", "Wahlbezirk 021", "Wahlbezirk 022", "Wahlbezirk 023", "Wahlbezirk 024", "Wahlbezirk 025", "Wahlbezirk 026", "Wahlbezirk 027", "Wahlbezirk 028", "Wahlbezirk 029", "Wahlbezirk 030", "Wahlbezirk 031", "Wahlbezirk 032", "Wahlbezirk 033", "Wahlbezirk 034"];
 const wahllokale = ["Hamdans Restaurant", "Grundschule Uphusen", "Grundschule Bierden", "Grundschule am Paulsberg", "GamMa", "ALS", "IGS Achim", "Grundschule Uesen", "Schützenhaus Achim", "Schützenverein Embsen", "Grundschule Baden", "Wachtelkönig"];
 
+// Basemap-Layer, die in der untersten Ebene ausgeblendet und als eigene,
+// oberste Ebene über den Wahlbezirken wieder eingeblendet werden
+const overlayLayerIds = [
+  "River",
+  "Minor road outline",
+  "Major road outline",
+  "Highway outline",
+  "Road under construction",
+  "Minor road",
+  "Major road",
+  "Highway",
+  "Major rail",
+  "Major rail hatching",
+  "Minor rail",
+  "Minor rail hatching",
+  "Building",
+  "Lake labels",
+  "Oneway",
+  "Road labels",
+  "Place labels",
+  "Town labels"
+];
+
 const bounds = "8.91611,52.9803,9.14296,53.0566";
 const b = bounds.split(',').map(Number);
 const initialBounds = (b.length === 4 && b.every(Number.isFinite))
@@ -348,12 +371,41 @@ function setupPanel() {
   });
 }
 
+// Klont die angegebenen Basemap-Layer aus dem aktuellen Style und legt sie
+// als neue, oberste Ebene an (über den Wahlbezirken), aber nur sichtbar für
+// die in overlayLayerIds gelisteten Layer.
+function addTopBasemapOverlay() {
+  const style = map.getStyle();
+  const overlaySet = new Set(overlayLayerIds);
+  style.layers
+    .filter(l => overlaySet.has(l.id))
+    .forEach(orig => {
+      const clone = JSON.parse(JSON.stringify(orig));
+      clone.id = 'top-' + orig.id;
+      clone.layout = clone.layout || {};
+      clone.layout.visibility = 'visible';
+      if (!map.getLayer(clone.id)) {
+        map.addLayer(clone); // ohne beforeId -> landet ganz oben
+      }
+    });
+}
+
 map.on('load', () => {
   // Gezielt nur die Stadtgrenze der MapTiler-Basiskarte ausblenden
   const streetsV2BoundaryLayerId = 'Other border';
   if (map.getLayer(streetsV2BoundaryLayerId)) {
     map.setLayoutProperty(streetsV2BoundaryLayerId, 'visibility', 'none');
   }
+
+  // In der untersten Basiskarte ausblenden – wird weiter unten als eigene,
+  // oberste Ebene über den Wahlbezirken wieder eingeblendet
+  overlayLayerIds.forEach(id => {
+    if (map.getLayer(id)) {
+      map.setLayoutProperty(id, 'visibility', 'none');
+    } else {
+      console.warn('Basiskarten-Layer nicht gefunden:', id);
+    }
+  });
 
   fetch('style.json')
     .then(r => r.json())
@@ -362,6 +414,7 @@ map.on('load', () => {
       own.layers.forEach(layer => map.addLayer(layer));
       document.getElementById('loading').remove();
       setupPanel();
+      addTopBasemapOverlay();
     })
     .catch(err => {
       console.error('Konnte eigene style.json nicht laden:', err);
